@@ -1,0 +1,90 @@
+{
+    "name": "nutritionix",
+    "description": "The world's largest and most accurate nutrition directory.  Come visit at www.nutritionix.com",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1100-nutritionix.jpg",
+    "tags": [
+        "api provider",
+        "esignature",
+        "have api",
+        "nutrition"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/nutritionix\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "nutritionix",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1100-nutritionix.jpg",
+            "humanURL": "http:\/\/www.nutritionix.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/nutritionix-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/nutritionix-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "API.json - Authoritative",
+            "url": "http:\/\/apis.io\/apisdef\/nutritionix.json"
+        },
+        {
+            "type": "Base",
+            "url": "https:\/\/api.nutritionix.com\/"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.nutritionix.com"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/feeds.feedburner.com\/NutritionixBlog"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/nutritionix"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/nutritionix"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developer.nutritionix.com\/"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/www.nutritionix.com\/api"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/nutritionix"
+        },
+        {
+            "type": "Pricing",
+            "url": "http:\/\/www.nutritionix.com\/business\/api"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/nutritionix"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/nutritionix_api"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.nutritionix.com"
+        }
+    ]
+}
