@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-natural-nutrients-response-schema.json",
+  "title": "NaturalNutrientsResponse",
+  "description": "Response from the natural language nutrients endpoint.",
+  "type": "object",
+  "properties": {
+    "foods": {
+      "type": "array",
+      "description": "One food object per detected food in the query.",
+      "items": {
+        "$ref": "#/components/schemas/Food"
+      }
+    }
+  }
+}

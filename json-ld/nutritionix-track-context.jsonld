@@ -1,0 +1,307 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "nix": "https://nutritionix.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "NaturalNutrientsRequest": "nix:NaturalNutrientsRequest",
+    "query": {
+      "@id": "nix:query",
+      "@type": "xsd:string"
+    },
+    "numServings": {
+      "@id": "nix:num_servings",
+      "@type": "xsd:integer"
+    },
+    "aggregate": {
+      "@id": "nix:aggregate",
+      "@type": "xsd:string"
+    },
+    "lineDelimited": {
+      "@id": "nix:line_delimited",
+      "@type": "xsd:boolean"
+    },
+    "useRawFoods": {
+      "@id": "nix:use_raw_foods",
+      "@type": "xsd:boolean"
+    },
+    "includeSubrecipe": {
+      "@id": "nix:include_subrecipe",
+      "@type": "xsd:boolean"
+    },
+    "timezone": {
+      "@id": "nix:timezone",
+      "@type": "xsd:string"
+    },
+    "consumedAt": {
+      "@id": "nix:consumed_at",
+      "@type": "xsd:string"
+    },
+    "useBrandedFoods": {
+      "@id": "nix:use_branded_foods",
+      "@type": "xsd:boolean"
+    },
+    "locale": {
+      "@id": "nix:locale",
+      "@type": "xsd:string"
+    },
+    "NaturalNutrientsResponse": "nix:NaturalNutrientsResponse",
+    "foods": {
+      "@id": "nix:foods",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "NaturalExerciseRequest": "nix:NaturalExerciseRequest",
+    "gender": {
+      "@id": "nix:gender",
+      "@type": "xsd:string"
+    },
+    "weightKg": {
+      "@id": "nix:weight_kg",
+      "@type": "xsd:decimal"
+    },
+    "heightCm": {
+      "@id": "nix:height_cm",
+      "@type": "xsd:decimal"
+    },
+    "age": {
+      "@id": "nix:age",
+      "@type": "xsd:integer"
+    },
+    "NaturalExerciseResponse": "nix:NaturalExerciseResponse",
+    "exercises": {
+      "@id": "nix:exercises",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Exercise": "nix:Exercise",
+    "tagId": {
+      "@id": "nix:tag_id",
+      "@type": "xsd:integer"
+    },
+    "userInput": {
+      "@id": "nix:user_input",
+      "@type": "xsd:string"
+    },
+    "durationMin": {
+      "@id": "nix:duration_min",
+      "@type": "xsd:decimal"
+    },
+    "met": {
+      "@id": "nix:met",
+      "@type": "xsd:decimal"
+    },
+    "nfCalories": {
+      "@id": "nix:nf_calories",
+      "@type": "xsd:decimal"
+    },
+    "compendiumCode": {
+      "@id": "nix:compendium_code",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "benefits": {
+      "@id": "nix:benefits",
+      "@type": "xsd:string"
+    },
+    "InstantSearchResponse": "nix:InstantSearchResponse",
+    "common": {
+      "@id": "nix:common",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "branded": {
+      "@id": "nix:branded",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "CommonFood": "nix:CommonFood",
+    "foodName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "servingUnit": {
+      "@id": "nix:serving_unit",
+      "@type": "xsd:string"
+    },
+    "tagName": {
+      "@id": "nix:tag_name",
+      "@type": "xsd:string"
+    },
+    "servingQty": {
+      "@id": "nix:serving_qty",
+      "@type": "xsd:decimal"
+    },
+    "commonType": {
+      "@id": "nix:common_type",
+      "@type": "xsd:integer"
+    },
+    "BrandedFood": "nix:BrandedFood",
+    "nixBrandId": {
+      "@id": "nix:nix_brand_id",
+      "@type": "xsd:string"
+    },
+    "brandNameItemName": {
+      "@id": "nix:brand_name_item_name",
+      "@type": "xsd:string"
+    },
+    "brandName": {
+      "@id": "schema:brand",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "nix:region",
+      "@type": "xsd:integer"
+    },
+    "brandType": {
+      "@id": "nix:brand_type",
+      "@type": "xsd:integer"
+    },
+    "nixItemId": {
+      "@id": "nix:nix_item_id",
+      "@type": "xsd:string"
+    },
+    "FoodsResponse": "nix:FoodsResponse",
+    "Food": "nix:Food",
+    "servingWeightGrams": {
+      "@id": "nix:serving_weight_grams",
+      "@type": "xsd:decimal"
+    },
+    "nfTotalFat": {
+      "@id": "nix:nf_total_fat",
+      "@type": "xsd:decimal"
+    },
+    "nfSaturatedFat": {
+      "@id": "nix:nf_saturated_fat",
+      "@type": "xsd:decimal"
+    },
+    "nfCholesterol": {
+      "@id": "nix:nf_cholesterol",
+      "@type": "xsd:decimal"
+    },
+    "nfSodium": {
+      "@id": "nix:nf_sodium",
+      "@type": "xsd:decimal"
+    },
+    "nfTotalCarbohydrate": {
+      "@id": "nix:nf_total_carbohydrate",
+      "@type": "xsd:decimal"
+    },
+    "nfDietaryFiber": {
+      "@id": "nix:nf_dietary_fiber",
+      "@type": "xsd:decimal"
+    },
+    "nfSugars": {
+      "@id": "nix:nf_sugars",
+      "@type": "xsd:decimal"
+    },
+    "nfProtein": {
+      "@id": "nix:nf_protein",
+      "@type": "xsd:decimal"
+    },
+    "nfPotassium": {
+      "@id": "nix:nf_potassium",
+      "@type": "xsd:decimal"
+    },
+    "nfP": {
+      "@id": "nix:nf_p",
+      "@type": "xsd:decimal"
+    },
+    "fullNutrients": {
+      "@id": "nix:full_nutrients",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "nixBrandName": {
+      "@id": "nix:nix_brand_name",
+      "@type": "xsd:string"
+    },
+    "nixItemName": {
+      "@id": "nix:nix_item_name",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "nix:metadata",
+      "@type": "@id"
+    },
+    "source": {
+      "@id": "nix:source",
+      "@type": "xsd:integer"
+    },
+    "ndbNo": {
+      "@id": "nix:ndb_no",
+      "@type": "xsd:integer"
+    },
+    "tags": {
+      "@id": "nix:tags",
+      "@type": "@id"
+    },
+    "altMeasures": {
+      "@id": "nix:alt_measures",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "FullNutrient": "nix:FullNutrient",
+    "attrId": {
+      "@id": "nix:attr_id",
+      "@type": "xsd:integer"
+    },
+    "value": {
+      "@id": "nix:value",
+      "@type": "xsd:decimal"
+    },
+    "AltMeasure": "nix:AltMeasure",
+    "servingWeight": {
+      "@id": "nix:serving_weight",
+      "@type": "xsd:decimal"
+    },
+    "measure": {
+      "@id": "nix:measure",
+      "@type": "xsd:string"
+    },
+    "seq": {
+      "@id": "nix:seq",
+      "@type": "xsd:integer"
+    },
+    "qty": {
+      "@id": "nix:qty",
+      "@type": "xsd:decimal"
+    },
+    "Photo": "nix:Photo",
+    "thumb": {
+      "@id": "nix:thumb",
+      "@type": "@id"
+    },
+    "highres": {
+      "@id": "nix:highres",
+      "@type": "@id"
+    },
+    "isUserUploaded": {
+      "@id": "nix:is_user_uploaded",
+      "@type": "xsd:boolean"
+    },
+    "BrandSearchResponse": "nix:BrandSearchResponse",
+    "brands": {
+      "@id": "nix:brands",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Brand": "nix:Brand",
+    "Id": {
+      "@id": "nix:_id",
+      "@type": "xsd:string"
+    },
+    "website": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "nix:type",
+      "@type": "xsd:integer"
+    }
+  }
+}

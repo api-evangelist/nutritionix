@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-foods-response-structure.json",
+  "name": "FoodsResponse",
+  "description": "A response that wraps one or more fully detailed food objects.",
+  "type": "object",
+  "properties": {
+    "foods": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Food"
+      }
+    }
+  }
+}

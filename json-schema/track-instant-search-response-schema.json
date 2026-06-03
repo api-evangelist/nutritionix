@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-instant-search-response-schema.json",
+  "title": "InstantSearchResponse",
+  "description": "Response from the instant search endpoint.",
+  "type": "object",
+  "properties": {
+    "common": {
+      "type": "array",
+      "description": "Matched common (generic) foods.",
+      "items": {
+        "$ref": "#/components/schemas/CommonFood"
+      }
+    },
+    "branded": {
+      "type": "array",
+      "description": "Matched branded and restaurant foods.",
+      "items": {
+        "$ref": "#/components/schemas/BrandedFood"
+      }
+    }
+  }
+}

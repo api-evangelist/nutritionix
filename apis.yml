@@ -1,33 +1,223 @@
 aid: nutritionix
 name: Nutritionix
-description: "Worlds largest verified nutrition database"
+description: "Nutritionix operates the world's largest verified nutrition database, exposing a Track API (v2) that converts natural-language food and exercise descriptions into full nutrient analysis, and powers food search, branded item lookup, and restaurant menu data for diet, fitness, and health applications."
 url: https://developer.nutritionix.com/
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-06-02'
+modified: '2026-06-03'
 x-source: public-apis/public-apis
 x-category: "Health"
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
-  - Restaurant
-  - Health
-  - Public APIs
+- Restaurant
+- Health
+- Nutrition
+- Food
+- Fitness
+- Public APIs
 apis:
-  - name: Nutritionix
-    description: "Worlds largest verified nutrition database"
-    humanURL: https://developer.nutritionix.com/
-    baseURL: https://developer.nutritionix.com/
-    tags:
-      - Health
-    properties:
-      - type: Documentation
-        url: https://developer.nutritionix.com/
+- name: Nutritionix Track API v2
+  description: "REST API for translating plain-text food and exercise descriptions into detailed nutrient and calorie analysis, searching the verified nutrition database, and looking up branded and restaurant menu items. Base URL: https://trackapi.nutritionix.com/v2."
+  humanURL: https://developer.nutritionix.com/docs/v2
+  baseURL: https://trackapi.nutritionix.com/v2
+  tags:
+  - Health
+  - Nutrition
+  - Food
+  - Fitness
+  properties:
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/openapi/nutritionix-track-openapi.yml
+  - type: Documentation
+    url: https://developer.nutritionix.com/docs/v2
+  - type: APIReference
+    url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
+  - type: Authentication
+    url: https://docx.syndigo.com/developers/docs/authentication
+  - type: SDK
+    title: Node.js SDK
+    url: https://github.com/nutritionix/nodejs-client-library
+  - type: SDK
+    title: Python SDK
+    url: https://github.com/nutritionix/library-python
+  - type: SDK
+    title: PHP SDK
+    url: https://github.com/nutritionix/api-library-php
+  - type: SDK
+    title: Ruby on Rails SDK
+    url: https://github.com/nutritionix/api-library-ror
+  - type: SDK
+    title: Angular Client
+    url: https://github.com/nutritionix/track-api-angular-client
+  - type: NaftikoCapability
+    url: capabilities/track-natural-language.yaml
+  - type: NaftikoCapability
+    url: capabilities/track-search.yaml
+  - type: NaftikoCapability
+    url: capabilities/track-item.yaml
+  - type: NaftikoCapability
+    url: capabilities/track-brands.yaml
+  - type: JSONSchema
+    url: json-schema/track-alt-measure-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-branded-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-common-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-exercise-schema.json
+  - type: JSONSchema
+    url: json-schema/track-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-foods-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-full-nutrient-schema.json
+  - type: JSONSchema
+    url: json-schema/track-instant-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-photo-schema.json
+  - type: JSONStructure
+    url: json-structure/track-alt-measure-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-structure.json
+  - type: JSONStructure
+    url: json-structure/track-branded-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-common-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-exercise-structure.json
+  - type: JSONStructure
+    url: json-structure/track-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-foods-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-full-nutrient-structure.json
+  - type: JSONStructure
+    url: json-structure/track-instant-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-photo-structure.json
+  - type: Example
+    url: examples/track-alt-measure-example.json
+  - type: Example
+    url: examples/track-brand-example.json
+  - type: Example
+    url: examples/track-brand-search-response-example.json
+  - type: Example
+    url: examples/track-branded-food-example.json
+  - type: Example
+    url: examples/track-common-food-example.json
+  - type: Example
+    url: examples/track-exercise-example.json
+  - type: Example
+    url: examples/track-food-example.json
+  - type: Example
+    url: examples/track-foods-response-example.json
+  - type: Example
+    url: examples/track-full-nutrient-example.json
+  - type: Example
+    url: examples/track-instant-search-response-example.json
+  - type: Example
+    url: examples/track-natural-exercise-request-example.json
+  - type: Example
+    url: examples/track-natural-exercise-response-example.json
+  - type: Example
+    url: examples/track-natural-nutrients-request-example.json
+  - type: Example
+    url: examples/track-natural-nutrients-response-example.json
+  - type: Example
+    url: examples/track-photo-example.json
 common:
-  - type: Website
-    url: https://developer.nutritionix.com/
-  - type: PublicAPIsListing
-    url: https://github.com/public-apis/public-apis
+- type: Website
+  url: https://www.nutritionix.com/
+- type: DeveloperPortal
+  url: https://developer.nutritionix.com/
+- type: Documentation
+  url: https://developer.nutritionix.com/docs/v2
+- type: SignUp
+  url: https://developer.nutritionix.com/signup
+- type: Pricing
+  url: https://www.nutritionix.com/api
+- type: GitHubOrganization
+  url: https://github.com/nutritionix
+- type: GitHubRepository
+  title: API Documentation
+  url: https://github.com/nutritionix/api-documentation
+- type: SDK
+  title: Node.js Client Library (npm)
+  url: https://www.npmjs.com/package/nutritionix
+- type: Tools
+  title: Nutrition Label Component
+  url: https://github.com/nutritionix/nutrition-label
+- type: Tools
+  title: Vue Nutrition Label Component
+  url: https://github.com/nutritionix/vue-nutrition-label
+- type: Tools
+  title: API Data Utilities
+  url: https://github.com/nutritionix/nutritionix-api-data-utilities
+- type: PublicAPIsListing
+  url: https://github.com/public-apis/public-apis
+- type: SpectralRules
+  url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/rules/nutritionix-rules.yml
+- type: Vocabulary
+  url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/vocabulary/nutritionix-vocabulary.yml
+- type: JSON-LD
+  url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/json-ld/nutritionix-track-context.jsonld
+- type: Plans
+  url: plans/nutritionix-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/nutritionix-rate-limits.yml
+- type: FinOps
+  url: finops/nutritionix-finops.yml
+- type: Features
+  data:
+  - name: Natural Language Nutrition
+    description: Convert free-text meal descriptions into full nutrient breakdowns including calories, macros, and micronutrients.
+  - name: Natural Language Exercise
+    description: Convert free-text activity descriptions into calorie-burn estimates personalized by gender, weight, height, and age.
+  - name: Instant Food Search
+    description: Typeahead search returning matched common foods and branded foods for autocomplete experiences.
+  - name: Branded & Restaurant Item Lookup
+    description: Retrieve detailed nutrition for branded grocery and restaurant menu items by nix_item_id or UPC.
+  - name: Verified Nutrition Database
+    description: Access the world's largest verified nutrition database, including USDA NDB-linked common foods and over a million branded items.
+- type: UseCases
+  data:
+  - name: Diet & Calorie Tracking
+    description: Power food logging and calorie-counting apps with natural-language meal entry.
+  - name: Fitness & Activity Tracking
+    description: Estimate calories burned from logged workouts and activities.
+  - name: Restaurant Menu Nutrition
+    description: Surface accurate nutrition facts for restaurant and chain menu items.
+  - name: Nutrition Label Rendering
+    description: Generate FDA-style nutrition labels from API nutrient data.
+- type: Integrations
+  data:
+  - name: USDA NDB
+    description: Common-food results are linked to USDA National Nutrient Database (NDB) numbers and nutrient attribute IDs.
+  - name: Syndigo / Riversand
+    description: Nutritionix is part of Syndigo; developer documentation is hosted on the Syndigo docs platform.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

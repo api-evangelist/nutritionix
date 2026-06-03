@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-alt-measure-structure.json",
+  "name": "AltMeasure",
+  "description": "An alternative serving measure for a food.",
+  "type": "object",
+  "properties": {
+    "serving_weight": {
+      "type": "double",
+      "example": 219
+    },
+    "measure": {
+      "type": "string",
+      "example": "burger"
+    },
+    "seq": {
+      "type": "int32",
+      "nullable": true
+    },
+    "qty": {
+      "type": "double",
+      "example": 1
+    }
+  }
+}

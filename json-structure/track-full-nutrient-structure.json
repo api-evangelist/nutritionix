@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-full-nutrient-structure.json",
+  "name": "FullNutrient",
+  "description": "A nutrient value identified by its USDA attribute id.",
+  "type": "object",
+  "properties": {
+    "attr_id": {
+      "type": "int32",
+      "description": "USDA NUTR_DEF attribute identifier.",
+      "example": 203
+    },
+    "value": {
+      "type": "double",
+      "description": "Nutrient value for the serving.",
+      "example": 25
+    }
+  }
+}

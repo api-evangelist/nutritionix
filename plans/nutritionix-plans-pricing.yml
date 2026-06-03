@@ -1,0 +1,77 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Nutritionix
+providerId: nutritionix
+created: '2026-06-03'
+modified: '2026-06-03'
+reconciled: false
+tags:
+  - Nutrition
+  - Food
+  - Health
+  - API Pricing
+description: >-
+  Nutritionix prices the Track API on a tiered, annually-billed subscription
+  model. A limited free tier historically served developers, students, and
+  hobbyists, but public free-access trials have been curtailed due to misuse;
+  current access is sold as paid commercial plans with quotas scaled by tier.
+  Enterprise plans are quoted by sales and start in the low thousands of dollars
+  per month; nonprofits on annual plans over $6K/year receive a 10% discount.
+  Exact per-tier prices and quotas are gated behind a sales/quote flow, so the
+  figures below are flagged unreconciled until verified against a live quote.
+sources:
+  - https://www.nutritionix.com/api
+  - https://developer.nutritionix.com/
+plans:
+  - id: nutritionix-free
+    name: Free / Trial
+    type: freemium
+    description: Limited, low-quota access historically offered to developers and hobbyists.
+    entries:
+      - label: API requests
+        name: api_requests
+        type: quota
+        metric: request
+        limit: -1
+        timeFrame: day
+        geo: global
+        unit: '1'
+        price: '$0'
+        userMultiplied: false
+    elements:
+      - name: Natural Language Nutrients
+      - name: Natural Language Exercise
+      - name: Instant Search
+  - id: nutritionix-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Sales-quoted commercial plan with higher quotas, SLAs, and commercial use rights.
+    entries:
+      - label: Annual subscription
+        name: annual_subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: '1'
+        price: 'from $1,850/month (billed annually); contact sales'
+        userMultiplied: false
+      - label: Nonprofit discount
+        name: nonprofit_discount
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: '1'
+        price: '10% off annual plans over $6,000/year'
+        userMultiplied: false
+    elements:
+      - name: Natural Language Nutrients
+      - name: Natural Language Exercise
+      - name: Instant Search
+      - name: Branded & Restaurant Item Lookup
+      - name: Brand Search
+      - name: Commercial Use License

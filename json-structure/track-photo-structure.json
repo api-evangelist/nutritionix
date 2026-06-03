@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-photo-structure.json",
+  "name": "Photo",
+  "description": "Image URLs associated with a food or exercise.",
+  "type": "object",
+  "properties": {
+    "thumb": {
+      "type": "uri",
+      "nullable": true,
+      "example": "https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg"
+    },
+    "highres": {
+      "type": "uri",
+      "nullable": true
+    },
+    "is_user_uploaded": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

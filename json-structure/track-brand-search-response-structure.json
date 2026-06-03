@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-brand-search-response-structure.json",
+  "name": "BrandSearchResponse",
+  "description": "Response from the brand search endpoint.",
+  "type": "object",
+  "properties": {
+    "brands": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Brand"
+      }
+    }
+  }
+}

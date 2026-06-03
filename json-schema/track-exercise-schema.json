@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-exercise-schema.json",
+  "title": "Exercise",
+  "description": "A single analyzed physical activity.",
+  "type": "object",
+  "properties": {
+    "tag_id": {
+      "type": "integer",
+      "description": "Internal exercise tag identifier."
+    },
+    "user_input": {
+      "type": "string",
+      "description": "The portion of the query that mapped to this exercise."
+    },
+    "duration_min": {
+      "type": "number",
+      "description": "Duration of the activity in minutes.",
+      "example": 30
+    },
+    "met": {
+      "type": "number",
+      "description": "Metabolic Equivalent of Task value for the activity.",
+      "example": 9.8
+    },
+    "nf_calories": {
+      "type": "number",
+      "description": "Estimated calories burned.",
+      "example": 372.5
+    },
+    "photo": {
+      "$ref": "#/components/schemas/Photo"
+    },
+    "compendium_code": {
+      "type": "integer",
+      "description": "Compendium of Physical Activities code for the exercise."
+    },
+    "name": {
+      "type": "string",
+      "description": "Canonical name of the activity.",
+      "example": "running"
+    },
+    "benefits": {
+      "type": "string",
+      "nullable": true,
+      "description": "Optional notes on the benefits of the activity."
+    }
+  }
+}

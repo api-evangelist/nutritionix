@@ -1,0 +1,197 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Nutritionix"
+  description: >-
+    Unified vocabulary for the Nutritionix Track API v2, mapping the operational
+    dimension (OpenAPI resources, actions, schemas, parameters, enums, and
+    authentication) to the capability dimension (Naftiko workflows, personas, and
+    domains) for nutrition, food, and fitness data.
+  created: "2026-06-03"
+  modified: "2026-06-03"
+
+# OPERATIONAL DIMENSION (from OpenAPI)
+operational:
+  apis:
+    - name: "Nutritionix Track API v2"
+      namespace: track
+      version: "2.0"
+      baseUrl: "https://trackapi.nutritionix.com/v2"
+      status: active
+
+  resources:
+    - name: nutrients
+      api: track
+      description: Natural-language nutrient analysis of foods.
+      actions: [analyze]
+    - name: exercise
+      api: track
+      description: Natural-language calorie-burn analysis of activities.
+      actions: [analyze]
+    - name: foods
+      api: track
+      description: Common and branded food records with full nutrient detail.
+      actions: [search, get]
+    - name: items
+      api: track
+      description: Branded and restaurant menu items addressable by id or UPC.
+      actions: [search, get]
+    - name: brands
+      api: track
+      description: Food and restaurant brands.
+      actions: [search]
+
+  actions:
+    - name: analyze
+      httpMethod: POST
+      pattern: query
+      description: Submit free text and receive structured nutrition or exercise data.
+    - name: search
+      httpMethod: GET
+      pattern: query
+      description: Query the nutrition database for matching foods, items, or brands.
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: Retrieve a single item record by identifier or UPC.
+
+  schemas:
+    core:
+      - Food
+      - FullNutrient
+      - AltMeasure
+      - Photo
+    search:
+      - CommonFood
+      - BrandedFood
+      - InstantSearchResponse
+      - FoodsResponse
+    natural_language:
+      - NaturalNutrientsRequest
+      - NaturalNutrientsResponse
+      - NaturalExerciseRequest
+      - NaturalExerciseResponse
+      - Exercise
+    brands:
+      - Brand
+      - BrandSearchResponse
+
+  parameters:
+    identifiers:
+      - nix_item_id
+      - upc
+      - id
+    filters:
+      - branded
+      - common
+      - branded_type
+      - type
+      - claims
+      - allergens
+    pagination:
+      - limit
+    localization:
+      - locale
+    query:
+      - query
+
+  enums:
+    brand_types:
+      - { value: 1, label: Restaurant }
+      - { value: 2, label: Grocery / CPG }
+    genders:
+      - male
+      - female
+
+  authentication:
+    scheme: apiKey
+    headers:
+      - x-app-id
+      - x-app-key
+    description: Every request requires the application id and key as HTTP headers.
+    apis: [track]
+
+# CAPABILITY DIMENSION (from Naftiko)
+capability:
+  workflows:
+    - name: Natural Language
+      file: capabilities/track-natural-language.yaml
+      description: Translate plain text into nutrient and exercise analysis.
+      apis: [track]
+      toolCount: 2
+      personas: [App Developer, Fitness App]
+      domains: [Nutrition, Fitness]
+    - name: Search
+      file: capabilities/track-search.yaml
+      description: Typeahead search across common and branded foods.
+      apis: [track]
+      toolCount: 1
+      personas: [App Developer]
+      domains: [Nutrition, Food]
+    - name: Item
+      file: capabilities/track-item.yaml
+      description: Look up branded and restaurant item nutrition by id or UPC.
+      apis: [track]
+      toolCount: 2
+      personas: [App Developer, Retail Integrator]
+      domains: [Food, Restaurant]
+    - name: Brands
+      file: capabilities/track-brands.yaml
+      description: Search the food and restaurant brand database.
+      apis: [track]
+      toolCount: 1
+      personas: [App Developer]
+      domains: [Food, Restaurant]
+
+  personas:
+    - id: app-developer
+      name: App Developer
+      description: Builds diet, calorie, and food-logging applications.
+      workflows: [Natural Language, Search, Item, Brands]
+    - id: fitness-app
+      name: Fitness App
+      description: Tracks workouts and estimates calories burned.
+      workflows: [Natural Language]
+    - id: retail-integrator
+      name: Retail Integrator
+      description: Surfaces packaged and restaurant item nutrition by barcode.
+      workflows: [Item]
+
+  domains:
+    - Nutrition
+    - Food
+    - Fitness
+    - Restaurant
+
+  namespaces:
+    - { consumed: track-natural-language, rest: track-natural-language-rest, mcp: track-natural-language-mcp, restPort: 8080, mcpPort: 9090 }
+    - { consumed: track-search, rest: track-search-rest, mcp: track-search-mcp, restPort: 8080, mcpPort: 9090 }
+    - { consumed: track-item, rest: track-item-rest, mcp: track-item-mcp, restPort: 8080, mcpPort: 9090 }
+    - { consumed: track-brands, rest: track-brands-rest, mcp: track-brands-mcp, restPort: 8080, mcpPort: 9090 }
+
+  binds:
+    - { key: NUTRITIONIX_APP_ID, usedBy: [Natural Language, Search, Item, Brands] }
+    - { key: NUTRITIONIX_APP_KEY, usedBy: [Natural Language, Search, Item, Brands] }
+
+# CROSS-REFERENCE
+crossReference:
+  - resource: nutrients
+    operations: [getNaturalNutrients]
+    workflows: [Natural Language]
+    personas: [App Developer, Fitness App]
+  - resource: exercise
+    operations: [getNaturalExercise]
+    workflows: [Natural Language]
+    personas: [Fitness App]
+  - resource: foods
+    operations: [searchInstant]
+    workflows: [Search]
+    personas: [App Developer]
+  - resource: items
+    operations: [searchItem, getItem]
+    workflows: [Item]
+    personas: [App Developer, Retail Integrator]
+  - resource: brands
+    operations: [searchBrands]
+    workflows: [Brands]
+    personas: [App Developer]

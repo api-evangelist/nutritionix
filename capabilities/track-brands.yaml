@@ -1,0 +1,103 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Nutritionix Track API v2 — Brands"
+  description: >-
+    Brands — Nutritionix Track API v2. 1 operation. Lead operation: Nutritionix
+    Search Brands. Search the database of food and restaurant brands by name and
+    type. Self-contained Naftiko capability covering one Nutritionix business surface.
+  tags:
+    - Nutritionix
+    - Nutrition
+    - Brands
+  created: "2026-06-03"
+  modified: "2026-06-03"
+
+binds:
+  - namespace: env
+    keys:
+      NUTRITIONIX_APP_ID: NUTRITIONIX_APP_ID
+      NUTRITIONIX_APP_KEY: NUTRITIONIX_APP_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "track-brands"
+      baseUri: "https://trackapi.nutritionix.com/v2"
+      description: "Nutritionix Track API v2 — Brands business capability. Self-contained, no shared references."
+      authentication:
+        type: apikey
+        key: x-app-key
+        value: "{{env.NUTRITIONIX_APP_KEY}}"
+        placement: header
+      resources:
+        - name: "brands-search"
+          path: "/brands/search"
+          operations:
+            - name: "searchBrands"
+              method: GET
+              description: "Search the database of food and restaurant brands by name."
+              inputParameters:
+                - name: "query"
+                  in: query
+                  type: string
+                  required: true
+                  description: "The brand name search phrase."
+                - name: "type"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Filter by brand type (1 restaurant, 2 grocery)."
+                - name: "limit"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of brands to return."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "track-brands-rest"
+      port: 8080
+      description: "REST adapter for Nutritionix Track API v2 — Brands. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+      resources:
+        - path: "/v1/brands-search"
+          name: "brands-search"
+          description: "REST surface for brand search."
+          operations:
+            - method: GET
+              name: "searchBrands"
+              description: "Search the database of food and restaurant brands by name."
+              call: "track-brands.searchBrands"
+              with:
+                "query": "rest.query"
+                "type": "rest.type"
+                "limit": "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+    - type: mcp
+      namespace: "track-brands-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Nutritionix Track API v2 — Brands. One tool per consumed operation, routed inline through this capability's consumes block."
+      tools:
+        - name: "search-brands"
+          description: "Search the database of food and restaurant brands by name."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "track-brands.searchBrands"
+          with:
+            "query": "tools.query"
+            "type": "tools.type"
+            "limit": "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."

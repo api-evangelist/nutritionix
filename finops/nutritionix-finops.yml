@@ -1,0 +1,83 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Nutritionix
+providerId: nutritionix
+created: '2026-06-03'
+modified: '2026-06-03'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Nutrition
+  - Food
+  - API
+description: >-
+  FOCUS-aligned FinOps for Nutritionix: an annually-billed tiered subscription
+  to the Track API, with consumption metered as API requests against a
+  plan-scoped daily quota.
+sources:
+  - https://www.nutritionix.com/api
+  - https://developer.nutritionix.com/docs/v2
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Nutritionix (Syndigo LLC)
+serviceCategory: Data Services
+billingModel:
+  pricingCategory: Tiered Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+    - Usage
+    - Adjustment
+    - Credit
+focusColumns:
+  ServiceName: Nutritionix Track API
+  ServiceCategory: Data Services
+  ServiceSubcategory: Nutrition Database API
+  ProviderName: Nutritionix
+  PublisherName: Syndigo LLC
+  InvoiceIssuerName: Syndigo LLC
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+meters:
+  - name: api_requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - plan_tier
+  - name: subscription_term
+    unit: month
+    aggregation: sum
+    dimensions:
+      - plan_tier
+  - name: nonprofit_discount
+    unit: varies
+    aggregation: sum
+    dimensions:
+      - plan_tier
+principles:
+  - name: Visibility
+    description: >-
+      Track consumption against the per-key daily request quota; 429 responses
+      signal quota or rate exhaustion for the x-app-id / x-app-key pair.
+  - name: Allocation
+    description: >-
+      Attribute spend per application by issuing separate x-app-id / x-app-key
+      credential pairs to each product, team, or environment.
+  - name: Optimization
+    description: >-
+      Cache nutrient and item lookups (foods and branded items are stable),
+      batch natural-language queries with line_delimited, and size the plan tier
+      to actual daily request volume to avoid over-provisioning the annual term.
+  - name: Accountability
+    description: >-
+      The team owning each credential pair owns its quota; review usage ahead of
+      the annual renewal and adjust the tier or negotiate quota with Nutritionix
+      sales.

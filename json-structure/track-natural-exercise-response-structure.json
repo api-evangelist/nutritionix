@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-natural-exercise-response-structure.json",
+  "name": "NaturalExerciseResponse",
+  "description": "Response from the natural language exercise endpoint.",
+  "type": "object",
+  "properties": {
+    "exercises": {
+      "type": "array",
+      "description": "One exercise object per detected activity.",
+      "items": {
+        "$ref": "#/components/schemas/Exercise"
+      }
+    }
+  }
+}

@@ -1,0 +1,268 @@
+# Spectral ruleset for the Nutritionix Track API
+# Enforces the conventions observed across the Nutritionix OpenAPI specifications.
+rules:
+
+  # ---- INFO / METADATA ----
+  info-title-prefix:
+    description: API title should begin with "Nutritionix".
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Nutritionix"
+  info-description-required:
+    description: Info object must have a meaningful description.
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  info-version-required:
+    description: Info object must declare a version.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  info-contact-required:
+    description: Info object should provide contact information.
+    severity: info
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  # ---- OPENAPI VERSION ----
+  openapi-version-3:
+    description: Specs must use OpenAPI 3.0.x.
+    severity: error
+    given: $.openapi
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\.0\\."
+
+  # ---- SERVERS ----
+  servers-defined:
+    description: At least one server must be defined.
+    severity: error
+    given: $.servers
+    then:
+      function: truthy
+  servers-https:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  servers-description:
+    description: Each server should have a description.
+    severity: info
+    given: $.servers[*]
+    then:
+      field: description
+      function: truthy
+
+  # ---- PATHS — NAMING CONVENTIONS ----
+  paths-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+  paths-kebab-or-snake:
+    description: Path segments should be lower case (kebab or snake), no camelCase.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "[A-Z]"
+
+  # ---- OPERATIONS ----
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+  operation-summary-prefix:
+    description: Operation summaries should begin with "Nutritionix".
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Nutritionix"
+  operation-description-required:
+    description: Every operation must have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  operation-operationId-required:
+    description: Every operation must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+  operation-operationId-camelcase:
+    description: operationId values must be camelCase.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  operation-tags-required:
+    description: Every operation must declare at least one tag.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+  operation-microcks-extension:
+    description: Operations should carry an x-microcks-operation extension for mock compatibility.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy
+
+  # ---- TAGS ----
+  tags-global-defined:
+    description: A global tags array should be defined.
+    severity: info
+    given: $
+    then:
+      field: tags
+      function: truthy
+  tags-description:
+    description: Each global tag should have a description.
+    severity: info
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+  tags-title-case:
+    description: Tag names should be Title Case.
+    severity: warn
+    given: $.tags[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z]*( [A-Z][A-Za-z]*)*$"
+
+  # ---- PARAMETERS ----
+  parameter-description-required:
+    description: Every parameter must have a description.
+    severity: warn
+    given: $.paths[*][*].parameters[*]
+    then:
+      field: description
+      function: truthy
+  parameter-snake-case:
+    description: Query and path parameter names should be snake_case.
+    severity: warn
+    given: $.paths[*][*].parameters[?(@.in=='query' || @.in=='path')].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+  parameter-schema-type:
+    description: Each parameter must define a schema with a type.
+    severity: warn
+    given: $.paths[*][*].parameters[*].schema
+    then:
+      field: type
+      function: truthy
+
+  # ---- REQUEST BODIES ----
+  request-body-json:
+    description: Request bodies should offer an application/json media type.
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody.content
+    then:
+      field: application/json
+      function: truthy
+
+  # ---- RESPONSES ----
+  response-2xx-required:
+    description: Every operation must define a successful (2xx) response.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: "200"
+      function: truthy
+  response-401-defined:
+    description: Operations should define a 401 response for missing/invalid credentials.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: "401"
+      function: truthy
+  response-description-required:
+    description: Every response must have a description (unless it is a $ref).
+    severity: warn
+    given: $.paths[*][*].responses[?(!@.$ref)]
+    then:
+      field: description
+      function: truthy
+
+  # ---- SCHEMAS — PROPERTY NAMING ----
+  schema-property-snake-case:
+    description: Schema property names should be snake_case (allowing leading underscore).
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^_?[a-z][a-z0-9_]*$"
+  schema-description-required:
+    description: Top-level component schemas should have a description.
+    severity: info
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  # ---- SECURITY ----
+  security-global-defined:
+    description: A global security requirement should be declared.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+  security-schemes-defined:
+    description: Security schemes must be defined under components.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+  security-apikey-headers:
+    description: Nutritionix authenticates via x-app-id and x-app-key API key headers.
+    severity: warn
+    given: $.components.securitySchemes[?(@.type=='apiKey')]
+    then:
+      field: in
+      function: pattern
+      functionOptions:
+        match: "^header$"
+
+  # ---- HTTP METHOD CONVENTIONS ----
+  get-no-request-body:
+    description: GET operations must not declare a request body.
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy

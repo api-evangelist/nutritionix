@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-natural-nutrients-request-structure.json",
+  "name": "NaturalNutrientsRequest",
+  "description": "Request body for the natural language nutrients endpoint.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Plain-text description of the food(s) to analyze.",
+      "example": "1 cup mashed potatoes and 2 tbsp gravy"
+    },
+    "num_servings": {
+      "type": "int32",
+      "description": "Multiplier applied to the parsed serving quantities."
+    },
+    "aggregate": {
+      "type": "string",
+      "description": "When set, aggregates all foods into a single named result."
+    },
+    "line_delimited": {
+      "type": "boolean",
+      "description": "Treat each newline in the query as a separate food.",
+      "default": false
+    },
+    "use_raw_foods": {
+      "type": "boolean",
+      "description": "Prefer raw (uncooked) USDA foods when resolving the query.",
+      "default": false
+    },
+    "include_subrecipe": {
+      "type": "boolean",
+      "description": "Include sub-recipe ingredient breakdowns where available.",
+      "default": false
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone used for consumed_at calculations.",
+      "example": "US/Eastern"
+    },
+    "consumed_at": {
+      "type": "datetime",
+      "description": "Timestamp the food was consumed."
+    },
+    "use_branded_foods": {
+      "type": "boolean",
+      "description": "Allow branded foods to satisfy the query.",
+      "default": false
+    },
+    "locale": {
+      "type": "string",
+      "description": "Locale code used to localize results.",
+      "example": "en_US"
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

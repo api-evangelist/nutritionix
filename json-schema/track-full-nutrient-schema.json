@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-full-nutrient-schema.json",
+  "title": "FullNutrient",
+  "description": "A nutrient value identified by its USDA attribute id.",
+  "type": "object",
+  "properties": {
+    "attr_id": {
+      "type": "integer",
+      "description": "USDA NUTR_DEF attribute identifier.",
+      "example": 203
+    },
+    "value": {
+      "type": "number",
+      "description": "Nutrient value for the serving.",
+      "example": 25
+    }
+  }
+}

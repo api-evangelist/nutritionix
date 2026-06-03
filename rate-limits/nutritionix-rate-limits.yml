@@ -1,0 +1,52 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Nutritionix
+providerId: nutritionix
+created: '2026-06-03'
+modified: '2026-06-03'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Nutrition
+  - Food
+description: >-
+  Nutritionix throttles the Track API per application credential pair
+  (x-app-id / x-app-key). Daily request quotas are scaled by plan tier, with the
+  free/trial tier capped at a small daily allowance and paid tiers receiving
+  substantially higher quotas. Exceeding the quota returns HTTP 429. Exact
+  per-tier numbers are not published on the open documentation and depend on the
+  negotiated plan, so the values below reference the docs and are flagged
+  unreconciled until confirmed for a specific key.
+sources:
+  - https://developer.nutritionix.com/docs/v2
+  - https://www.nutritionix.com/api
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  unauthorized: 401
+limits:
+  - name: Daily request quota (free / trial tier)
+    scope: key
+    metric: requests_per_day
+    limit: 'small per-day allowance; see plan terms'
+    notes: Free/trial credentials are capped at a low daily request count to deter misuse.
+  - name: Daily request quota (paid tiers)
+    scope: key
+    metric: requests_per_day
+    limit: 'tier-dependent; see negotiated plan'
+    notes: Paid plans scale the daily quota with the subscription tier.
+  - name: Request rate
+    scope: key
+    metric: varies
+    limit: 'not publicly published'
+    notes: Short-term burst throttling applies per credential pair; specific RPS is not documented openly.
+policies:
+  - name: Per-credential scoping
+    description: Quotas and throttling are bound to the x-app-id / x-app-key pair, not per-IP.
+  - name: Retry on 429
+    description: On a 429, back off and retry; reduce request frequency or upgrade the plan for a higher quota.
+  - name: Quota reset
+    description: Daily quotas reset on a rolling or calendar-day basis depending on plan terms.
+  - name: Raise via sales
+    description: Higher quotas and rate ceilings are obtained by upgrading the commercial plan through Nutritionix sales.

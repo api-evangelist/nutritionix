@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-common-food-schema.json",
+  "title": "CommonFood",
+  "description": "A matched common (generic) food from instant search.",
+  "type": "object",
+  "properties": {
+    "food_name": {
+      "type": "string",
+      "example": "cheese"
+    },
+    "serving_unit": {
+      "type": "string",
+      "example": "cup, diced"
+    },
+    "tag_name": {
+      "type": "string",
+      "example": "cheese"
+    },
+    "serving_qty": {
+      "type": "number",
+      "example": 1
+    },
+    "common_type": {
+      "type": "integer",
+      "nullable": true
+    },
+    "tag_id": {
+      "type": "string",
+      "example": "402"
+    },
+    "photo": {
+      "$ref": "#/components/schemas/Photo"
+    },
+    "locale": {
+      "type": "string",
+      "example": "en_US"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Nutritionix Track API v2 — Natural Language"
+  description: >-
+    Natural Language — Nutritionix Track API v2. 2 operations. Lead operation:
+    Nutritionix Analyze Natural Language Nutrients. Translate plain-text food and
+    exercise phrases into structured nutrient and calorie analysis. Self-contained
+    Naftiko capability covering one Nutritionix business surface.
+  tags:
+    - Nutritionix
+    - Nutrition
+    - Natural Language
+  created: "2026-06-03"
+  modified: "2026-06-03"
+
+binds:
+  - namespace: env
+    keys:
+      NUTRITIONIX_APP_ID: NUTRITIONIX_APP_ID
+      NUTRITIONIX_APP_KEY: NUTRITIONIX_APP_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "track-natural-language"
+      baseUri: "https://trackapi.nutritionix.com/v2"
+      description: "Nutritionix Track API v2 — Natural Language business capability. Self-contained, no shared references."
+      authentication:
+        type: apikey
+        key: x-app-key
+        value: "{{env.NUTRITIONIX_APP_KEY}}"
+        placement: header
+      resources:
+        - name: "natural-nutrients"
+          path: "/natural/nutrients"
+          operations:
+            - name: "getNaturalNutrients"
+              method: POST
+              description: "Analyze a plain-text food description into full nutrient detail."
+              inputParameters:
+                - name: "body"
+                  in: body
+                  type: object
+                  required: true
+                  description: "Natural language nutrients request body (query plus options)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "natural-exercise"
+          path: "/natural/exercise"
+          operations:
+            - name: "getNaturalExercise"
+              method: POST
+              description: "Analyze a plain-text exercise description into estimated calories burned."
+              inputParameters:
+                - name: "body"
+                  in: body
+                  type: object
+                  required: true
+                  description: "Natural language exercise request body (query plus biometrics)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "track-natural-language-rest"
+      port: 8080
+      description: "REST adapter for Nutritionix Track API v2 — Natural Language. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+      resources:
+        - path: "/v1/natural-nutrients"
+          name: "natural-nutrients"
+          description: "REST surface for natural language nutrient analysis."
+          operations:
+            - method: POST
+              name: "getNaturalNutrients"
+              description: "Analyze a plain-text food description into full nutrient detail."
+              call: "track-natural-language.getNaturalNutrients"
+              with:
+                "body": "rest.body"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/natural-exercise"
+          name: "natural-exercise"
+          description: "REST surface for natural language exercise analysis."
+          operations:
+            - method: POST
+              name: "getNaturalExercise"
+              description: "Analyze a plain-text exercise description into estimated calories burned."
+              call: "track-natural-language.getNaturalExercise"
+              with:
+                "body": "rest.body"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+    - type: mcp
+      namespace: "track-natural-language-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Nutritionix Track API v2 — Natural Language. One tool per consumed operation, routed inline through this capability's consumes block."
+      tools:
+        - name: "analyze-natural-nutrients"
+          description: "Analyze a plain-text food description into full nutrient detail."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: false
+          call: "track-natural-language.getNaturalNutrients"
+          with:
+            "body": "tools.body"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "analyze-natural-exercise"
+          description: "Analyze a plain-text exercise description into estimated calories burned."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: false
+          call: "track-natural-language.getNaturalExercise"
+          with:
+            "body": "tools.body"
+          outputParameters:
+            - type: object
+              mapping: "$."

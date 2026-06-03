@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-food-schema.json",
+  "title": "Food",
+  "description": "A fully detailed food object with complete nutrient information.",
+  "type": "object",
+  "properties": {
+    "food_name": {
+      "type": "string",
+      "example": "Big Mac"
+    },
+    "brand_name": {
+      "type": "string",
+      "nullable": true,
+      "example": "McDonald's"
+    },
+    "serving_qty": {
+      "type": "number",
+      "example": 1
+    },
+    "serving_unit": {
+      "type": "string",
+      "example": "burger"
+    },
+    "serving_weight_grams": {
+      "type": "number",
+      "nullable": true,
+      "example": 219
+    },
+    "nf_calories": {
+      "type": "number",
+      "example": 540
+    },
+    "nf_total_fat": {
+      "type": "number",
+      "example": 28
+    },
+    "nf_saturated_fat": {
+      "type": "number",
+      "example": 10
+    },
+    "nf_cholesterol": {
+      "type": "number",
+      "example": 80
+    },
+    "nf_sodium": {
+      "type": "number",
+      "example": 970
+    },
+    "nf_total_carbohydrate": {
+      "type": "number",
+      "example": 47
+    },
+    "nf_dietary_fiber": {
+      "type": "number",
+      "nullable": true,
+      "example": 3
+    },
+    "nf_sugars": {
+      "type": "number",
+      "nullable": true,
+      "example": 9
+    },
+    "nf_protein": {
+      "type": "number",
+      "example": 25
+    },
+    "nf_potassium": {
+      "type": "number",
+      "nullable": true
+    },
+    "nf_p": {
+      "type": "number",
+      "nullable": true
+    },
+    "full_nutrients": {
+      "type": "array",
+      "description": "Complete list of nutrient values keyed by USDA attribute id.",
+      "items": {
+        "$ref": "#/components/schemas/FullNutrient"
+      }
+    },
+    "nix_brand_name": {
+      "type": "string",
+      "nullable": true,
+      "example": "McDonald's"
+    },
+    "nix_brand_id": {
+      "type": "string",
+      "nullable": true,
+      "example": "513fbc1283aa2dc80c000053"
+    },
+    "nix_item_name": {
+      "type": "string",
+      "nullable": true,
+      "example": "Big Mac"
+    },
+    "nix_item_id": {
+      "type": "string",
+      "nullable": true,
+      "example": "513fc9e73fe3ffd40300109f"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "source": {
+      "type": "integer",
+      "description": "Internal source identifier for the food record.",
+      "example": 8
+    },
+    "ndb_no": {
+      "type": "integer",
+      "nullable": true,
+      "description": "USDA National Nutrient Database number for common foods."
+    },
+    "tags": {
+      "type": "object",
+      "nullable": true,
+      "additionalProperties": true
+    },
+    "alt_measures": {
+      "type": "array",
+      "nullable": true,
+      "description": "Alternative serving measures for the food.",
+      "items": {
+        "$ref": "#/components/schemas/AltMeasure"
+      }
+    },
+    "photo": {
+      "$ref": "#/components/schemas/Photo"
+    }
+  }
+}

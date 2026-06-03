@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-brand-structure.json",
+  "name": "Brand",
+  "description": "A food or restaurant brand.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "example": "513fbc1283aa2dc80c000053"
+    },
+    "name": {
+      "type": "string",
+      "example": "McDonald's"
+    },
+    "website": {
+      "type": "uri",
+      "nullable": true
+    },
+    "type": {
+      "type": "int32",
+      "description": "Brand type (1 for restaurant, 2 for grocery/CPG).",
+      "example": 1
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "food_name": "Big Mac",
+  "brand_name": "McDonald's",
+  "serving_qty": 1,
+  "serving_unit": "burger",
+  "serving_weight_grams": 219,
+  "nf_calories": 540,
+  "nf_total_fat": 28,
+  "nf_saturated_fat": 10,
+  "nf_cholesterol": 80,
+  "nf_sodium": 970,
+  "nf_total_carbohydrate": 47,
+  "nf_dietary_fiber": 3,
+  "nf_sugars": 9,
+  "nf_protein": 25,
+  "nf_potassium": 43.75,
+  "nf_p": 0.96,
+  "full_nutrients": [
+    "value"
+  ],
+  "nix_brand_name": "McDonald's",
+  "nix_brand_id": "513fbc1283aa2dc80c000053",
+  "nix_item_name": "Big Mac",
+  "nix_item_id": "513fc9e73fe3ffd40300109f",
+  "metadata": {},
+  "source": 8,
+  "ndb_no": 301,
+  "tags": {},
+  "alt_measures": [
+    "value"
+  ],
+  "photo": "value"
+}

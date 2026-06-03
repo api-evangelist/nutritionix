@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-structure/track-natural-exercise-request-structure.json",
+  "name": "NaturalExerciseRequest",
+  "description": "Request body for the natural language exercise endpoint.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Plain-text description of the physical activity.",
+      "example": "ran 3 miles"
+    },
+    "gender": {
+      "type": "string",
+      "description": "User gender, used to refine calorie-burn estimates.",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "weight_kg": {
+      "type": "double",
+      "description": "User weight in kilograms.",
+      "example": 72.5
+    },
+    "height_cm": {
+      "type": "double",
+      "description": "User height in centimeters.",
+      "example": 167.64
+    },
+    "age": {
+      "type": "int32",
+      "description": "User age in years.",
+      "example": 30
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

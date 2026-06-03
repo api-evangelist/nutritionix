@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nutritionix/refs/heads/main/json-schema/track-branded-food-schema.json",
+  "title": "BrandedFood",
+  "description": "A matched branded or restaurant food from instant search.",
+  "type": "object",
+  "properties": {
+    "food_name": {
+      "type": "string",
+      "example": "Big Mac"
+    },
+    "serving_unit": {
+      "type": "string",
+      "example": "burger"
+    },
+    "nix_brand_id": {
+      "type": "string",
+      "example": "513fbc1283aa2dc80c000053"
+    },
+    "brand_name_item_name": {
+      "type": "string",
+      "example": "McDonald's Big Mac"
+    },
+    "serving_qty": {
+      "type": "number",
+      "example": 1
+    },
+    "nf_calories": {
+      "type": "number",
+      "example": 540
+    },
+    "photo": {
+      "$ref": "#/components/schemas/Photo"
+    },
+    "brand_name": {
+      "type": "string",
+      "example": "McDonald's"
+    },
+    "region": {
+      "type": "integer",
+      "example": 1
+    },
+    "brand_type": {
+      "type": "integer",
+      "example": 1
+    },
+    "nix_item_id": {
+      "type": "string",
+      "example": "513fc9e73fe3ffd40300109f"
+    },
+    "locale": {
+      "type": "string",
+      "example": "en_US"
+    }
+  }
+}
