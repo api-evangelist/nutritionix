@@ -2,13 +2,16 @@
 
 Nutritionix operates the world's largest verified nutrition database, exposing a Track API (v2) that converts natural-language food and exercise descriptions into full nutrient analysis, and powers food search, branded item lookup, and restaurant menu data for diet, fitness, and health applications.
 
-**URL:** [Visit APIs.json URL](https://developer.nutritionix.com/)
+**APIs.json:** [https://developer.nutritionix.com/](https://developer.nutritionix.com/)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Tags
 
-## Tags:
-
- - Restaurant, Health, Nutrition, Food, Fitness, Public APIs
+- Restaurant
+- Health
+- Nutrition
+- Food
+- Fitness
+- Public APIs
 
 ## Timestamps
 
@@ -21,124 +24,100 @@ Nutritionix operates the world's largest verified nutrition database, exposing a
 
 REST API for translating plain-text food and exercise descriptions into detailed nutrient and calorie analysis, searching the verified nutrition database, and looking up branded and restaurant menu items. Base URL: https://trackapi.nutritionix.com/v2.
 
-**Human URL:** [https://developer.nutritionix.com/docs/v2](https://developer.nutritionix.com/docs/v2)
+- **Human URL:** [https://developer.nutritionix.com/docs/v2](https://developer.nutritionix.com/docs/v2)
+- **Base URL:** `https://trackapi.nutritionix.com/v2`
 
-#### Tags:
+#### Tags
 
- - Health, Nutrition, Food, Fitness
+- Health
+- Nutrition
+- Food
+- Fitness
 
 #### Properties
 
-- [OpenAPI](openapi/nutritionix-track-openapi.yml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/nutritionix/main/openapi/nutritionix-track-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
 - [Documentation](https://developer.nutritionix.com/docs/v2)
-- [APIReference](https://docx.syndigo.com/developers/docs/nutritionix-api-guide)
+- [API Reference](https://docx.syndigo.com/developers/docs/nutritionix-api-guide)
 - [Authentication](https://docx.syndigo.com/developers/docs/authentication)
-- [Node.js SDK](https://github.com/nutritionix/nodejs-client-library)
-- [Python SDK](https://github.com/nutritionix/library-python)
-- [PHP SDK](https://github.com/nutritionix/api-library-php)
-- [Ruby on Rails SDK](https://github.com/nutritionix/api-library-ror)
-- [Angular Client](https://github.com/nutritionix/track-api-angular-client)
-
-This API also carries 4 Naftiko capability references, 15 JSON Schema references, 15 JSON Structure references, and 15 example references (see the Artifacts and Capabilities sections below).
+- [SDK](https://github.com/nutritionix/nodejs-client-library)
+- [SDK](https://github.com/nutritionix/library-python)
+- [SDK](https://github.com/nutritionix/api-library-php)
+- [SDK](https://github.com/nutritionix/api-library-ror)
+- [SDK](https://github.com/nutritionix/track-api-angular-client)
+- [JSON Schema](json-schema/track-alt-measure-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-brand-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-brand-search-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-branded-food-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-common-food-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-exercise-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-food-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-foods-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-full-nutrient-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-instant-search-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-natural-exercise-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-natural-exercise-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-natural-nutrients-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-natural-nutrients-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/track-photo-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](json-structure/track-alt-measure-structure.json)
+- [JSON Structure](json-structure/track-brand-search-response-structure.json)
+- [JSON Structure](json-structure/track-brand-structure.json)
+- [JSON Structure](json-structure/track-branded-food-structure.json)
+- [JSON Structure](json-structure/track-common-food-structure.json)
+- [JSON Structure](json-structure/track-exercise-structure.json)
+- [JSON Structure](json-structure/track-food-structure.json)
+- [JSON Structure](json-structure/track-foods-response-structure.json)
+- [JSON Structure](json-structure/track-full-nutrient-structure.json)
+- [JSON Structure](json-structure/track-instant-search-response-structure.json)
+- [JSON Structure](json-structure/track-natural-exercise-request-structure.json)
+- [JSON Structure](json-structure/track-natural-exercise-response-structure.json)
+- [JSON Structure](json-structure/track-natural-nutrients-request-structure.json)
+- [JSON Structure](json-structure/track-natural-nutrients-response-structure.json)
+- [JSON Structure](json-structure/track-photo-structure.json)
+- [Example](examples/track-alt-measure-example.json)
+- [Example](examples/track-brand-example.json)
+- [Example](examples/track-brand-search-response-example.json)
+- [Example](examples/track-branded-food-example.json)
+- [Example](examples/track-common-food-example.json)
+- [Example](examples/track-exercise-example.json)
+- [Example](examples/track-food-example.json)
+- [Example](examples/track-foods-response-example.json)
+- [Example](examples/track-full-nutrient-example.json)
+- [Example](examples/track-instant-search-response-example.json)
+- [Example](examples/track-natural-exercise-request-example.json)
+- [Example](examples/track-natural-exercise-response-example.json)
+- [Example](examples/track-natural-nutrients-request-example.json)
+- [Example](examples/track-natural-nutrients-response-example.json)
+- [Example](examples/track-photo-example.json)
+- [Postman Collection](collections/nutritionix-track.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/nutritionix-track.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Website](https://www.nutritionix.com/)
-- [DeveloperPortal](https://developer.nutritionix.com/)
+- [Developer Portal](https://developer.nutritionix.com/)
 - [Documentation](https://developer.nutritionix.com/docs/v2)
-- [SignUp](https://developer.nutritionix.com/signup)
+- [Sign Up](https://developer.nutritionix.com/signup)
 - [Pricing](https://www.nutritionix.com/api)
-- [GitHubOrganization](https://github.com/nutritionix)
-- [API Documentation](https://github.com/nutritionix/api-documentation)
-- [Node.js Client Library (npm)](https://www.npmjs.com/package/nutritionix)
-- [Nutrition Label Component](https://github.com/nutritionix/nutrition-label)
-- [Vue Nutrition Label Component](https://github.com/nutritionix/vue-nutrition-label)
-- [API Data Utilities](https://github.com/nutritionix/nutritionix-api-data-utilities)
-- [PublicAPIsListing](https://github.com/public-apis/public-apis)
-- [SpectralRules](rules/nutritionix-rules.yml)
-- [Vocabulary](vocabulary/nutritionix-vocabulary.yml)
-- [JSON-LD](json-ld/nutritionix-track-context.jsonld)
+- [GitHub Organization](https://github.com/nutritionix)
+- [GitHub Repository](https://github.com/nutritionix/api-documentation)
+- [SDK](https://www.npmjs.com/package/nutritionix)
+- [Tools](https://github.com/nutritionix/nutrition-label)
+- [Tools](https://github.com/nutritionix/vue-nutrition-label)
+- [Tools](https://github.com/nutritionix/nutritionix-api-data-utilities)
+- [Public APIs Listing](https://github.com/public-apis/public-apis)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/nutritionix/main/rules/nutritionix-rules.yml)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/nutritionix/main/vocabulary/nutritionix-vocabulary.yml)
+- [J S O N- L D](https://raw.githubusercontent.com/api-evangelist/nutritionix/main/json-ld/nutritionix-track-context.jsonld)
 - [Plans](plans/nutritionix-plans-pricing.yml)
-- [RateLimits](rate-limits/nutritionix-rate-limits.yml)
-- [FinOps](finops/nutritionix-finops.yml)
-
-## Features
-
-| Name | Description |
-|------|-------------|
-| Natural Language Nutrition | Convert free-text meal descriptions into full nutrient breakdowns including calories, macros, and micronutrients. |
-| Natural Language Exercise | Convert free-text activity descriptions into calorie-burn estimates personalized by gender, weight, height, and age. |
-| Instant Food Search | Typeahead search returning matched common foods and branded foods for autocomplete experiences. |
-| Branded & Restaurant Item Lookup | Retrieve detailed nutrition for branded grocery and restaurant menu items by nix_item_id or UPC. |
-| Verified Nutrition Database | Access the world's largest verified nutrition database, including USDA NDB-linked common foods and over a million branded items. |
-
-## Use Cases
-
-| Name | Description |
-|------|-------------|
-| Diet & Calorie Tracking | Power food logging and calorie-counting apps with natural-language meal entry. |
-| Fitness & Activity Tracking | Estimate calories burned from logged workouts and activities. |
-| Restaurant Menu Nutrition | Surface accurate nutrition facts for restaurant and chain menu items. |
-| Nutrition Label Rendering | Generate FDA-style nutrition labels from API nutrient data. |
-
-## Integrations
-
-| Name | Description |
-|------|-------------|
-| USDA NDB | Common-food results are linked to USDA National Nutrient Database (NDB) numbers and nutrient attribute IDs. |
-| Syndigo / Riversand | Nutritionix is part of Syndigo; developer documentation is hosted on the Syndigo docs platform. |
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Nutritionix Track API v2](openapi/nutritionix-track-openapi.yml) — 6 operations across Natural Language, Search, Item, and Brands.
-
-### JSON Schema
-
-15 schema files in [`json-schema/`](json-schema/) covering Food, FullNutrient, AltMeasure, Photo, CommonFood, BrandedFood, Exercise, Brand, the natural-language request/response models, and the search/item/brand response envelopes.
-
-### JSON Structure
-
-15 [`json-structure/`](json-structure/) files mirroring the JSON Schemas in the json-structure.org type system.
-
-### JSON-LD
-
-- [Nutritionix Track Context](json-ld/nutritionix-track-context.jsonld) — linked-data context mapping Track API properties to schema.org and a Nutritionix namespace.
-
-### Examples
-
-15 example payloads in [`examples/`](examples/), one per JSON Schema.
-
-## Capabilities
-
-Naftiko capabilities, one self-contained file per business surface (OpenAPI tag), each exposing both a REST and an MCP adapter.
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Natural Language](capabilities/track-natural-language.yaml) | Track | 2 | App Developer, Fitness App |
-| [Search](capabilities/track-search.yaml) | Track | 1 | App Developer |
-| [Item](capabilities/track-item.yaml) | Track | 2 | App Developer, Retail Integrator |
-| [Brands](capabilities/track-brands.yaml) | Track | 1 | App Developer |
-
-## Vocabulary
-
-- [Nutritionix Vocabulary](vocabulary/nutritionix-vocabulary.yml) — Unified taxonomy mapping 5 resources, 3 actions, 4 workflows, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions.
-
-## Rules
-
-- [Nutritionix Rules](rules/nutritionix-rules.yml) — 33 Spectral rules across info, servers, paths, operations, tags, parameters, responses, schemas, security, and HTTP method categories enforcing Nutritionix API conventions.
-
-## Plans, Rate Limits & FinOps
-
-- [Plans](plans/nutritionix-plans-pricing.yml) — API Commons Plans 0.1 (tiered annual subscription; figures unreconciled pending a live quote).
-- [Rate Limits](rate-limits/nutritionix-rate-limits.yml) — API Commons Rate Limits 0.1 (per-credential daily quota; numbers unpublished).
-- [FinOps](finops/nutritionix-finops.yml) — FOCUS-aligned FinOps 1.0 (tiered subscription billing, per-request meters).
+- [Rate Limits](rate-limits/nutritionix-rate-limits.yml)
+- [Fin Ops](finops/nutritionix-finops.yml)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

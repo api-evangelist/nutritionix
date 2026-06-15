@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nutritionix Track API v2",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-app-id",
+      "value": "{{x-app-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Natural Language",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Analyze Natural Language Nutrients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://trackapi.nutritionix.com/v2/natural/nutrients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a plain-text description of one or more foods and receive a full nutrient breakdown for each detected food, including calories, macros, micronutrients, serving sizes, and photos."
+        },
+        {
+          "info": {
+            "name": "Nutritionix Analyze Natural Language Exercise",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://trackapi.nutritionix.com/v2/natural/exercise",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a plain-text description of physical activity and receive an estimate of calories burned, personalized by the user's gender, weight, height, and age."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Search Instant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/search/instant",
+            "params": [
+              {
+                "name": "query",
+                "value": "cheese",
+                "type": "query",
+                "description": "The food search phrase to match against common and branded foods."
+              },
+              {
+                "name": "branded",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include branded foods in the results."
+              },
+              {
+                "name": "common",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include common foods in the results."
+              },
+              {
+                "name": "detailed",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return full nutrient detail for each result."
+              },
+              {
+                "name": "branded_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter branded results by type (1 for restaurant, 2 for grocery/CPG)."
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Locale code used to localize results (e.g. en_US)."
+              }
+            ]
+          },
+          "docs": "Typeahead search that returns matched common foods and branded foods for a partial or complete query string. Ideal for building food autocomplete experiences."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Item",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Search Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/search/item",
+            "params": [
+              {
+                "name": "nix_item_id",
+                "value": "513fc9e73fe3ffd40300109f",
+                "type": "query",
+                "description": "The Nutritionix item identifier for a branded or restaurant item."
+              },
+              {
+                "name": "upc",
+                "value": "",
+                "type": "query",
+                "description": "The UPC barcode of a branded grocery item."
+              },
+              {
+                "name": "claims",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include marketing/regulatory claims in the response."
+              },
+              {
+                "name": "allergens",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include allergen information in the response."
+              }
+            ]
+          },
+          "docs": "Retrieve full nutrition detail for a branded or restaurant menu item by its Nutritionix item identifier or UPC barcode."
+        },
+        {
+          "info": {
+            "name": "Nutritionix Get Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/item",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The item identifier or resource identifier to look up."
+              },
+              {
+                "name": "upc",
+                "value": "",
+                "type": "query",
+                "description": "The UPC barcode of a branded grocery item."
+              },
+              {
+                "name": "nix_item_id",
+                "value": "",
+                "type": "query",
+                "description": "The Nutritionix item identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a single item by its item identifier, resource identifier, or UPC. This is the legacy item-lookup endpoint; new integrations should prefer /search/item."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Brands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Search Brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/brands/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "mcdonald",
+                "type": "query",
+                "description": "The brand name search phrase."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand type (1 for restaurant, 2 for grocery/CPG)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of brands to return."
+              }
+            ]
+          },
+          "docs": "Search the database of food and restaurant brands by name, optionally filtering by brand type (restaurant or grocery/CPG)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
