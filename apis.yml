@@ -41,19 +41,19 @@ apis:
         url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
       - type: Authentication
         url: https://docx.syndigo.com/developers/docs/authentication
-      - type: SDK
+      - type: SDKs
         title: Node.js SDK
         url: https://github.com/nutritionix/nodejs-client-library
-      - type: SDK
+      - type: SDKs
         title: Python SDK
         url: https://github.com/nutritionix/library-python
-      - type: SDK
+      - type: SDKs
         title: PHP SDK
         url: https://github.com/nutritionix/api-library-php
-      - type: SDK
+      - type: SDKs
         title: Ruby on Rails SDK
         url: https://github.com/nutritionix/api-library-ror
-      - type: SDK
+      - type: SDKs
         title: Angular Client
         url: https://github.com/nutritionix/track-api-angular-client
       - type: JSONSchema
@@ -116,35 +116,35 @@ apis:
         url: json-structure/track-natural-nutrients-response-structure.json
       - type: JSONStructure
         url: json-structure/track-photo-structure.json
-      - type: Example
+      - type: Examples
         url: examples/track-alt-measure-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-brand-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-brand-search-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-branded-food-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-common-food-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-exercise-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-food-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-foods-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-full-nutrient-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-instant-search-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-natural-exercise-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-natural-exercise-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-natural-nutrients-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-natural-nutrients-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/track-photo-example.json
 common:
   - type: Website
@@ -153,7 +153,7 @@ common:
     url: https://developer.nutritionix.com/
   - type: Documentation
     url: https://developer.nutritionix.com/docs/v2
-  - type: SignUp
+  - type: Signup
     url: https://developer.nutritionix.com/signup
   - type: Pricing
     url: https://www.nutritionix.com/api
@@ -162,7 +162,7 @@ common:
   - type: GitHubRepository
     title: API Documentation
     url: https://github.com/nutritionix/api-documentation
-  - type: SDK
+  - type: SDKs
     title: Node.js Client Library (npm)
     url: https://www.npmjs.com/package/nutritionix
   - type: Tools
@@ -180,7 +180,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/rules/nutritionix-rules.yml
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/vocabulary/nutritionix-vocabulary.yml
-  - type: JSON-LD
+  - type: JSONLD
     url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/json-ld/nutritionix-track-context.jsonld
   - type: Plans
     url: plans/nutritionix-plans-pricing.yml
