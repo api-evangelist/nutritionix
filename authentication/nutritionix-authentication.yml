@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/nutritionix-track-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: AppId
+  type: apiKey
+  in: header
+  parameter: x-app-id
+  description: Your Nutritionix application identifier.
+  sources:
+  - openapi/nutritionix-track-openapi.yml
+- name: AppKey
+  type: apiKey
+  in: header
+  parameter: x-app-key
+  description: Your Nutritionix application key.
+  sources:
+  - openapi/nutritionix-track-openapi.yml
