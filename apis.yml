@@ -147,6 +147,8 @@ apis:
       - type: Examples
         url: examples/track-photo-example.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/nutritionix-agentic-access.yml
   - type: DomainSecurity
     url: security/nutritionix-domain-security.yml
   - type: Authentication
