@@ -1,0 +1,382 @@
+openapi: 3.0.3
+info:
+  title: Nutritionix Track API v2 Brands Item API
+  version: '2.0'
+  description: The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.
+  contact:
+    name: Nutritionix Developer Support
+    url: https://developer.nutritionix.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://trackapi.nutritionix.com/v2
+  description: Nutritionix Track API v2 production server
+security:
+- AppId: []
+  AppKey: []
+tags:
+- name: Item
+  description: Look up detailed nutrition for branded and restaurant menu items.
+paths:
+  /search/item:
+    get:
+      operationId: searchItem
+      summary: Nutritionix Search Item
+      description: Retrieve full nutrition detail for a branded or restaurant menu item by its Nutritionix item identifier or UPC barcode.
+      tags:
+      - Item
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: nix_item_id
+        in: query
+        required: false
+        description: The Nutritionix item identifier for a branded or restaurant item.
+        schema:
+          type: string
+        example: 513fc9e73fe3ffd40300109f
+      - name: upc
+        in: query
+        required: false
+        description: The UPC barcode of a branded grocery item.
+        schema:
+          type: string
+      - name: claims
+        in: query
+        required: false
+        description: Whether to include marketing/regulatory claims in the response.
+        schema:
+          type: boolean
+          default: false
+      - name: allergens
+        in: query
+        required: false
+        description: Whether to include allergen information in the response.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Branded item nutrition detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FoodsResponse'
+              examples:
+                SearchItem200Example:
+                  summary: Default searchItem 200 response
+                  x-microcks-default: true
+                  value:
+                    foods:
+                    - food_name: Big Mac
+                      brand_name: McDonald's
+                      serving_qty: 1
+                      serving_unit: burger
+                      serving_weight_grams: 219
+                      nf_calories: 540
+                      nf_total_fat: 28
+                      nf_saturated_fat: 10
+                      nf_cholesterol: 80
+                      nf_sodium: 970
+                      nf_total_carbohydrate: 47
+                      nf_dietary_fiber: 3
+                      nf_sugars: 9
+                      nf_protein: 25
+                      nf_potassium: 1
+                      nf_p: 1
+                      full_nutrients:
+                      - attr_id: 203
+                        value: 25
+                      nix_brand_name: McDonald's
+                      nix_brand_id: 513fbc1283aa2dc80c000053
+                      nix_item_name: Big Mac
+                      nix_item_id: 513fc9e73fe3ffd40300109f
+                      metadata: {}
+                      source: 8
+                      ndb_no: 1
+                      tags: {}
+                      alt_measures:
+                      - serving_weight: 219
+                        measure: burger
+                        seq: 1
+                        qty: 1
+                      photo:
+                        thumb: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+                        highres: highres
+                        is_user_uploaded: false
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /item:
+    get:
+      operationId: getItem
+      summary: Nutritionix Get Item
+      description: Retrieve a single item by its item identifier, resource identifier, or UPC. This is the legacy item-lookup endpoint; new integrations should prefer /search/item.
+      tags:
+      - Item
+      deprecated: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: query
+        required: false
+        description: The item identifier or resource identifier to look up.
+        schema:
+          type: string
+      - name: upc
+        in: query
+        required: false
+        description: The UPC barcode of a branded grocery item.
+        schema:
+          type: string
+      - name: nix_item_id
+        in: query
+        required: false
+        description: The Nutritionix item identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Item nutrition detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FoodsResponse'
+              examples:
+                GetItem200Example:
+                  summary: Default getItem 200 response
+                  x-microcks-default: true
+                  value:
+                    foods:
+                    - food_name: Big Mac
+                      brand_name: McDonald's
+                      serving_qty: 1
+                      serving_unit: burger
+                      serving_weight_grams: 219
+                      nf_calories: 540
+                      nf_total_fat: 28
+                      nf_saturated_fat: 10
+                      nf_cholesterol: 80
+                      nf_sodium: 970
+                      nf_total_carbohydrate: 47
+                      nf_dietary_fiber: 3
+                      nf_sugars: 9
+                      nf_protein: 25
+                      nf_potassium: 1
+                      nf_p: 1
+                      full_nutrients:
+                      - attr_id: 203
+                        value: 25
+                      nix_brand_name: McDonald's
+                      nix_brand_id: 513fbc1283aa2dc80c000053
+                      nix_item_name: Big Mac
+                      nix_item_id: 513fc9e73fe3ffd40300109f
+                      metadata: {}
+                      source: 8
+                      ndb_no: 1
+                      tags: {}
+                      alt_measures:
+                      - serving_weight: 219
+                        measure: burger
+                        seq: 1
+                        qty: 1
+                      photo:
+                        thumb: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+                        highres: highres
+                        is_user_uploaded: false
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Food:
+      type: object
+      description: A fully detailed food object with complete nutrient information.
+      properties:
+        food_name:
+          type: string
+          example: Big Mac
+        brand_name:
+          type: string
+          nullable: true
+          example: McDonald's
+        serving_qty:
+          type: number
+          example: 1
+        serving_unit:
+          type: string
+          example: burger
+        serving_weight_grams:
+          type: number
+          nullable: true
+          example: 219
+        nf_calories:
+          type: number
+          example: 540
+        nf_total_fat:
+          type: number
+          example: 28
+        nf_saturated_fat:
+          type: number
+          example: 10
+        nf_cholesterol:
+          type: number
+          example: 80
+        nf_sodium:
+          type: number
+          example: 970
+        nf_total_carbohydrate:
+          type: number
+          example: 47
+        nf_dietary_fiber:
+          type: number
+          nullable: true
+          example: 3
+        nf_sugars:
+          type: number
+          nullable: true
+          example: 9
+        nf_protein:
+          type: number
+          example: 25
+        nf_potassium:
+          type: number
+          nullable: true
+        nf_p:
+          type: number
+          nullable: true
+        full_nutrients:
+          type: array
+          description: Complete list of nutrient values keyed by USDA attribute id.
+          items:
+            $ref: '#/components/schemas/FullNutrient'
+        nix_brand_name:
+          type: string
+          nullable: true
+          example: McDonald's
+        nix_brand_id:
+          type: string
+          nullable: true
+          example: 513fbc1283aa2dc80c000053
+        nix_item_name:
+          type: string
+          nullable: true
+          example: Big Mac
+        nix_item_id:
+          type: string
+          nullable: true
+          example: 513fc9e73fe3ffd40300109f
+        metadata:
+          type: object
+          additionalProperties: true
+        source:
+          type: integer
+          description: Internal source identifier for the food record.
+          example: 8
+        ndb_no:
+          type: integer
+          nullable: true
+          description: USDA National Nutrient Database number for common foods.
+        tags:
+          type: object
+          nullable: true
+          additionalProperties: true
+        alt_measures:
+          type: array
+          nullable: true
+          description: Alternative serving measures for the food.
+          items:
+            $ref: '#/components/schemas/AltMeasure'
+        photo:
+          $ref: '#/components/schemas/Photo'
+    FoodsResponse:
+      type: object
+      description: A response that wraps one or more fully detailed food objects.
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type: string
+          format: uri
+          nullable: true
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type: string
+          format: uri
+          nullable: true
+        is_user_uploaded:
+          type: boolean
+          default: false
+    FullNutrient:
+      type: object
+      description: A nutrient value identified by its USDA attribute id.
+      properties:
+        attr_id:
+          type: integer
+          description: USDA NUTR_DEF attribute identifier.
+          example: 203
+        value:
+          type: number
+          description: Nutrient value for the serving.
+          example: 25
+    AltMeasure:
+      type: object
+      description: An alternative serving measure for a food.
+      properties:
+        serving_weight:
+          type: number
+          example: 219
+        measure:
+          type: string
+          example: burger
+        seq:
+          type: integer
+          nullable: true
+        qty:
+          type: number
+          example: 1
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    AppId:
+      type: apiKey
+      in: header
+      name: x-app-id
+      description: Your Nutritionix application identifier.
+    AppKey:
+      type: apiKey
+      in: header
+      name: x-app-key
+      description: Your Nutritionix application key.

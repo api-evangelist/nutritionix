@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Nutritionix Track API v2 Brands API
+  version: '2.0'
+  description: The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.
+  contact:
+    name: Nutritionix Developer Support
+    url: https://developer.nutritionix.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://trackapi.nutritionix.com/v2
+  description: Nutritionix Track API v2 production server
+security:
+- AppId: []
+  AppKey: []
+tags:
+- name: Brands
+  description: Search the database of food and restaurant brands.
+paths:
+  /brands/search:
+    get:
+      operationId: searchBrands
+      summary: Nutritionix Search Brands
+      description: Search the database of food and restaurant brands by name, optionally filtering by brand type (restaurant or grocery/CPG).
+      tags:
+      - Brands
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: The brand name search phrase.
+        schema:
+          type: string
+        example: mcdonald
+      - name: type
+        in: query
+        required: false
+        description: Filter by brand type (1 for restaurant, 2 for grocery/CPG).
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 2
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of brands to return.
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: Matching brands.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandSearchResponse'
+              examples:
+                SearchBrands200Example:
+                  summary: Default searchBrands 200 response
+                  x-microcks-default: true
+                  value:
+                    brands:
+                    - _id: 513fbc1283aa2dc80c000053
+                      name: McDonald's
+                      website: website
+                      type: 1
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    BrandSearchResponse:
+      type: object
+      description: Response from the brand search endpoint.
+      properties:
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+    Brand:
+      type: object
+      description: A food or restaurant brand.
+      properties:
+        _id:
+          type: string
+          example: 513fbc1283aa2dc80c000053
+        name:
+          type: string
+          example: McDonald's
+        website:
+          type: string
+          format: uri
+          nullable: true
+        type:
+          type: integer
+          description: Brand type (1 for restaurant, 2 for grocery/CPG).
+          example: 1
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    AppId:
+      type: apiKey
+      in: header
+      name: x-app-id
+      description: Your Nutritionix application identifier.
+    AppKey:
+      type: apiKey
+      in: header
+      name: x-app-key
+      description: Your Nutritionix application key.

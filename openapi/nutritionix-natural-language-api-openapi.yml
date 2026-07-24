@@ -1,0 +1,462 @@
+openapi: 3.0.3
+info:
+  title: Nutritionix Track API v2 Brands Natural Language API
+  version: '2.0'
+  description: The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.
+  contact:
+    name: Nutritionix Developer Support
+    url: https://developer.nutritionix.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://trackapi.nutritionix.com/v2
+  description: Nutritionix Track API v2 production server
+security:
+- AppId: []
+  AppKey: []
+tags:
+- name: Natural Language
+  description: Translate plain-text food and exercise phrases into structured nutrition data.
+paths:
+  /natural/nutrients:
+    post:
+      operationId: getNaturalNutrients
+      summary: Nutritionix Analyze Natural Language Nutrients
+      description: Submit a plain-text description of one or more foods and receive a full nutrient breakdown for each detected food, including calories, macros, micronutrients, serving sizes, and photos.
+      tags:
+      - Natural Language
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NaturalNutrientsRequest'
+            examples:
+              GetNaturalNutrientsRequestExample:
+                summary: Default getNaturalNutrients request
+                x-microcks-default: true
+                value:
+                  query: 1 cup mashed potatoes and 2 tbsp gravy
+                  num_servings: 1
+                  aggregate: aggregate
+                  line_delimited: false
+                  use_raw_foods: false
+                  include_subrecipe: false
+                  timezone: US/Eastern
+                  consumed_at: consumed_at
+                  use_branded_foods: false
+                  locale: en_US
+      responses:
+        '200':
+          description: Foods successfully analyzed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NaturalNutrientsResponse'
+              examples:
+                GetNaturalNutrients200Example:
+                  summary: Default getNaturalNutrients 200 response
+                  x-microcks-default: true
+                  value:
+                    foods:
+                    - food_name: Big Mac
+                      brand_name: McDonald's
+                      serving_qty: 1
+                      serving_unit: burger
+                      serving_weight_grams: 219
+                      nf_calories: 540
+                      nf_total_fat: 28
+                      nf_saturated_fat: 10
+                      nf_cholesterol: 80
+                      nf_sodium: 970
+                      nf_total_carbohydrate: 47
+                      nf_dietary_fiber: 3
+                      nf_sugars: 9
+                      nf_protein: 25
+                      nf_potassium: 1
+                      nf_p: 1
+                      full_nutrients:
+                      - attr_id: 203
+                        value: 25
+                      nix_brand_name: McDonald's
+                      nix_brand_id: 513fbc1283aa2dc80c000053
+                      nix_item_name: Big Mac
+                      nix_item_id: 513fc9e73fe3ffd40300109f
+                      metadata: {}
+                      source: 8
+                      ndb_no: 1
+                      tags: {}
+                      alt_measures:
+                      - serving_weight: 219
+                        measure: burger
+                        seq: 1
+                        qty: 1
+                      photo:
+                        thumb: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+                        highres: highres
+                        is_user_uploaded: false
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /natural/exercise:
+    post:
+      operationId: getNaturalExercise
+      summary: Nutritionix Analyze Natural Language Exercise
+      description: Submit a plain-text description of physical activity and receive an estimate of calories burned, personalized by the user's gender, weight, height, and age.
+      tags:
+      - Natural Language
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NaturalExerciseRequest'
+            examples:
+              GetNaturalExerciseRequestExample:
+                summary: Default getNaturalExercise request
+                x-microcks-default: true
+                value:
+                  query: ran 3 miles
+                  gender: male
+                  weight_kg: 72.5
+                  height_cm: 167.64
+                  age: 30
+      responses:
+        '200':
+          description: Exercise successfully analyzed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NaturalExerciseResponse'
+              examples:
+                GetNaturalExercise200Example:
+                  summary: Default getNaturalExercise 200 response
+                  x-microcks-default: true
+                  value:
+                    exercises:
+                    - tag_id: 1
+                      user_input: user_input
+                      duration_min: 30
+                      met: 9.8
+                      nf_calories: 372.5
+                      photo:
+                        thumb: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+                        highres: highres
+                        is_user_uploaded: false
+                      compendium_code: 1
+                      name: running
+                      benefits: benefits
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Food:
+      type: object
+      description: A fully detailed food object with complete nutrient information.
+      properties:
+        food_name:
+          type: string
+          example: Big Mac
+        brand_name:
+          type: string
+          nullable: true
+          example: McDonald's
+        serving_qty:
+          type: number
+          example: 1
+        serving_unit:
+          type: string
+          example: burger
+        serving_weight_grams:
+          type: number
+          nullable: true
+          example: 219
+        nf_calories:
+          type: number
+          example: 540
+        nf_total_fat:
+          type: number
+          example: 28
+        nf_saturated_fat:
+          type: number
+          example: 10
+        nf_cholesterol:
+          type: number
+          example: 80
+        nf_sodium:
+          type: number
+          example: 970
+        nf_total_carbohydrate:
+          type: number
+          example: 47
+        nf_dietary_fiber:
+          type: number
+          nullable: true
+          example: 3
+        nf_sugars:
+          type: number
+          nullable: true
+          example: 9
+        nf_protein:
+          type: number
+          example: 25
+        nf_potassium:
+          type: number
+          nullable: true
+        nf_p:
+          type: number
+          nullable: true
+        full_nutrients:
+          type: array
+          description: Complete list of nutrient values keyed by USDA attribute id.
+          items:
+            $ref: '#/components/schemas/FullNutrient'
+        nix_brand_name:
+          type: string
+          nullable: true
+          example: McDonald's
+        nix_brand_id:
+          type: string
+          nullable: true
+          example: 513fbc1283aa2dc80c000053
+        nix_item_name:
+          type: string
+          nullable: true
+          example: Big Mac
+        nix_item_id:
+          type: string
+          nullable: true
+          example: 513fc9e73fe3ffd40300109f
+        metadata:
+          type: object
+          additionalProperties: true
+        source:
+          type: integer
+          description: Internal source identifier for the food record.
+          example: 8
+        ndb_no:
+          type: integer
+          nullable: true
+          description: USDA National Nutrient Database number for common foods.
+        tags:
+          type: object
+          nullable: true
+          additionalProperties: true
+        alt_measures:
+          type: array
+          nullable: true
+          description: Alternative serving measures for the food.
+          items:
+            $ref: '#/components/schemas/AltMeasure'
+        photo:
+          $ref: '#/components/schemas/Photo'
+    NaturalNutrientsResponse:
+      type: object
+      description: Response from the natural language nutrients endpoint.
+      properties:
+        foods:
+          type: array
+          description: One food object per detected food in the query.
+          items:
+            $ref: '#/components/schemas/Food'
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type: string
+          format: uri
+          nullable: true
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type: string
+          format: uri
+          nullable: true
+        is_user_uploaded:
+          type: boolean
+          default: false
+    NaturalExerciseResponse:
+      type: object
+      description: Response from the natural language exercise endpoint.
+      properties:
+        exercises:
+          type: array
+          description: One exercise object per detected activity.
+          items:
+            $ref: '#/components/schemas/Exercise'
+    Exercise:
+      type: object
+      description: A single analyzed physical activity.
+      properties:
+        tag_id:
+          type: integer
+          description: Internal exercise tag identifier.
+        user_input:
+          type: string
+          description: The portion of the query that mapped to this exercise.
+        duration_min:
+          type: number
+          description: Duration of the activity in minutes.
+          example: 30
+        met:
+          type: number
+          description: Metabolic Equivalent of Task value for the activity.
+          example: 9.8
+        nf_calories:
+          type: number
+          description: Estimated calories burned.
+          example: 372.5
+        photo:
+          $ref: '#/components/schemas/Photo'
+        compendium_code:
+          type: integer
+          description: Compendium of Physical Activities code for the exercise.
+        name:
+          type: string
+          description: Canonical name of the activity.
+          example: running
+        benefits:
+          type: string
+          nullable: true
+          description: Optional notes on the benefits of the activity.
+    FullNutrient:
+      type: object
+      description: A nutrient value identified by its USDA attribute id.
+      properties:
+        attr_id:
+          type: integer
+          description: USDA NUTR_DEF attribute identifier.
+          example: 203
+        value:
+          type: number
+          description: Nutrient value for the serving.
+          example: 25
+    NaturalExerciseRequest:
+      type: object
+      description: Request body for the natural language exercise endpoint.
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: Plain-text description of the physical activity.
+          example: ran 3 miles
+        gender:
+          type: string
+          description: User gender, used to refine calorie-burn estimates.
+          enum:
+          - male
+          - female
+        weight_kg:
+          type: number
+          description: User weight in kilograms.
+          example: 72.5
+        height_cm:
+          type: number
+          description: User height in centimeters.
+          example: 167.64
+        age:
+          type: integer
+          description: User age in years.
+          example: 30
+    AltMeasure:
+      type: object
+      description: An alternative serving measure for a food.
+      properties:
+        serving_weight:
+          type: number
+          example: 219
+        measure:
+          type: string
+          example: burger
+        seq:
+          type: integer
+          nullable: true
+        qty:
+          type: number
+          example: 1
+    NaturalNutrientsRequest:
+      type: object
+      description: Request body for the natural language nutrients endpoint.
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: Plain-text description of the food(s) to analyze.
+          example: 1 cup mashed potatoes and 2 tbsp gravy
+        num_servings:
+          type: integer
+          description: Multiplier applied to the parsed serving quantities.
+        aggregate:
+          type: string
+          description: When set, aggregates all foods into a single named result.
+        line_delimited:
+          type: boolean
+          description: Treat each newline in the query as a separate food.
+          default: false
+        use_raw_foods:
+          type: boolean
+          description: Prefer raw (uncooked) USDA foods when resolving the query.
+          default: false
+        include_subrecipe:
+          type: boolean
+          description: Include sub-recipe ingredient breakdowns where available.
+          default: false
+        timezone:
+          type: string
+          description: IANA timezone used for consumed_at calculations.
+          example: US/Eastern
+        consumed_at:
+          type: string
+          format: date-time
+          description: Timestamp the food was consumed.
+        use_branded_foods:
+          type: boolean
+          description: Allow branded foods to satisfy the query.
+          default: false
+        locale:
+          type: string
+          description: Locale code used to localize results.
+          example: en_US
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    AppId:
+      type: apiKey
+      in: header
+      name: x-app-id
+      description: Your Nutritionix application identifier.
+    AppKey:
+      type: apiKey
+      in: header
+      name: x-app-key
+      description: Your Nutritionix application key.

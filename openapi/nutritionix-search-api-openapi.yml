@@ -1,0 +1,243 @@
+openapi: 3.0.3
+info:
+  title: Nutritionix Track API v2 Brands Search API
+  version: '2.0'
+  description: The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.
+  contact:
+    name: Nutritionix Developer Support
+    url: https://developer.nutritionix.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-03'
+servers:
+- url: https://trackapi.nutritionix.com/v2
+  description: Nutritionix Track API v2 production server
+security:
+- AppId: []
+  AppKey: []
+tags:
+- name: Search
+  description: Search the nutrition database for common and branded foods.
+paths:
+  /search/instant:
+    get:
+      operationId: searchInstant
+      summary: Nutritionix Search Instant
+      description: Typeahead search that returns matched common foods and branded foods for a partial or complete query string. Ideal for building food autocomplete experiences.
+      tags:
+      - Search
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: The food search phrase to match against common and branded foods.
+        schema:
+          type: string
+        example: cheese
+      - name: branded
+        in: query
+        required: false
+        description: Whether to include branded foods in the results.
+        schema:
+          type: boolean
+          default: true
+      - name: common
+        in: query
+        required: false
+        description: Whether to include common foods in the results.
+        schema:
+          type: boolean
+          default: true
+      - name: detailed
+        in: query
+        required: false
+        description: Whether to return full nutrient detail for each result.
+        schema:
+          type: boolean
+          default: false
+      - name: branded_type
+        in: query
+        required: false
+        description: Filter branded results by type (1 for restaurant, 2 for grocery/CPG).
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 2
+      - name: locale
+        in: query
+        required: false
+        description: Locale code used to localize results (e.g. en_US).
+        schema:
+          type: string
+          default: en_US
+      responses:
+        '200':
+          description: Matching common and branded foods.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantSearchResponse'
+              examples:
+                SearchInstant200Example:
+                  summary: Default searchInstant 200 response
+                  x-microcks-default: true
+                  value:
+                    common:
+                    - food_name: cheese
+                      serving_unit: cup, diced
+                      tag_name: cheese
+                      serving_qty: 1
+                      common_type: 1
+                      tag_id: '402'
+                      photo:
+                        thumb: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+                        highres: highres
+                        is_user_uploaded: false
+                      locale: en_US
+                    branded:
+                    - food_name: Big Mac
+                      serving_unit: burger
+                      nix_brand_id: 513fbc1283aa2dc80c000053
+                      brand_name_item_name: McDonald's Big Mac
+                      serving_qty: 1
+                      nf_calories: 540
+                      photo:
+                        thumb: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+                        highres: highres
+                        is_user_uploaded: false
+                      brand_name: McDonald's
+                      region: 1
+                      brand_type: 1
+                      nix_item_id: 513fc9e73fe3ffd40300109f
+                      locale: en_US
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    InstantSearchResponse:
+      type: object
+      description: Response from the instant search endpoint.
+      properties:
+        common:
+          type: array
+          description: Matched common (generic) foods.
+          items:
+            $ref: '#/components/schemas/CommonFood'
+        branded:
+          type: array
+          description: Matched branded and restaurant foods.
+          items:
+            $ref: '#/components/schemas/BrandedFood'
+    CommonFood:
+      type: object
+      description: A matched common (generic) food from instant search.
+      properties:
+        food_name:
+          type: string
+          example: cheese
+        serving_unit:
+          type: string
+          example: cup, diced
+        tag_name:
+          type: string
+          example: cheese
+        serving_qty:
+          type: number
+          example: 1
+        common_type:
+          type: integer
+          nullable: true
+        tag_id:
+          type: string
+          example: '402'
+        photo:
+          $ref: '#/components/schemas/Photo'
+        locale:
+          type: string
+          example: en_US
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type: string
+          format: uri
+          nullable: true
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type: string
+          format: uri
+          nullable: true
+        is_user_uploaded:
+          type: boolean
+          default: false
+    BrandedFood:
+      type: object
+      description: A matched branded or restaurant food from instant search.
+      properties:
+        food_name:
+          type: string
+          example: Big Mac
+        serving_unit:
+          type: string
+          example: burger
+        nix_brand_id:
+          type: string
+          example: 513fbc1283aa2dc80c000053
+        brand_name_item_name:
+          type: string
+          example: McDonald's Big Mac
+        serving_qty:
+          type: number
+          example: 1
+        nf_calories:
+          type: number
+          example: 540
+        photo:
+          $ref: '#/components/schemas/Photo'
+        brand_name:
+          type: string
+          example: McDonald's
+        region:
+          type: integer
+          example: 1
+        brand_type:
+          type: integer
+          example: 1
+        nix_item_id:
+          type: string
+          example: 513fc9e73fe3ffd40300109f
+        locale:
+          type: string
+          example: en_US
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    AppId:
+      type: apiKey
+      in: header
+      name: x-app-id
+      description: Your Nutritionix application identifier.
+    AppKey:
+      type: apiKey
+      in: header
+      name: x-app-key
+      description: Your Nutritionix application key.
