@@ -1,4 +1,18 @@
 aid: nutritionix
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/nutritionix.png
 name: Nutritionix
 description: >-
   Nutritionix operates the world's largest verified nutrition database, exposing a Track API (v2) that converts
@@ -20,132 +34,470 @@ tags:
   - Fitness
   - Public APIs
 apis:
-  - name: Nutritionix Track API v2
-    description: >-
-      REST API for translating plain-text food and exercise descriptions into detailed nutrient and calorie analysis,
-      searching the verified nutrition database, and looking up branded and restaurant menu items. Base URL:
-      https://trackapi.nutritionix.com/v2.
-    humanURL: https://developer.nutritionix.com/docs/v2
-    baseURL: https://trackapi.nutritionix.com/v2
-    tags:
-      - Health
-      - Nutrition
-      - Food
-      - Fitness
-    properties:
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/nutritionix/main/openapi/nutritionix-track-openapi.yml
-      - type: Documentation
-        url: https://developer.nutritionix.com/docs/v2
-      - type: APIReference
-        url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
-      - type: Authentication
-        url: https://docx.syndigo.com/developers/docs/authentication
-      - type: SDKs
-        title: Node.js SDK
-        url: https://github.com/nutritionix/nodejs-client-library
-      - type: SDKs
-        title: Python SDK
-        url: https://github.com/nutritionix/library-python
-      - type: SDKs
-        title: PHP SDK
-        url: https://github.com/nutritionix/api-library-php
-      - type: SDKs
-        title: Ruby on Rails SDK
-        url: https://github.com/nutritionix/api-library-ror
-      - type: SDKs
-        title: Angular Client
-        url: https://github.com/nutritionix/track-api-angular-client
-      - type: JSONSchema
-        url: json-schema/track-alt-measure-schema.json
-      - type: JSONSchema
-        url: json-schema/track-brand-schema.json
-      - type: JSONSchema
-        url: json-schema/track-brand-search-response-schema.json
-      - type: JSONSchema
-        url: json-schema/track-branded-food-schema.json
-      - type: JSONSchema
-        url: json-schema/track-common-food-schema.json
-      - type: JSONSchema
-        url: json-schema/track-exercise-schema.json
-      - type: JSONSchema
-        url: json-schema/track-food-schema.json
-      - type: JSONSchema
-        url: json-schema/track-foods-response-schema.json
-      - type: JSONSchema
-        url: json-schema/track-full-nutrient-schema.json
-      - type: JSONSchema
-        url: json-schema/track-instant-search-response-schema.json
-      - type: JSONSchema
-        url: json-schema/track-natural-exercise-request-schema.json
-      - type: JSONSchema
-        url: json-schema/track-natural-exercise-response-schema.json
-      - type: JSONSchema
-        url: json-schema/track-natural-nutrients-request-schema.json
-      - type: JSONSchema
-        url: json-schema/track-natural-nutrients-response-schema.json
-      - type: JSONSchema
-        url: json-schema/track-photo-schema.json
-      - type: JSONStructure
-        url: json-structure/track-alt-measure-structure.json
-      - type: JSONStructure
-        url: json-structure/track-brand-search-response-structure.json
-      - type: JSONStructure
-        url: json-structure/track-brand-structure.json
-      - type: JSONStructure
-        url: json-structure/track-branded-food-structure.json
-      - type: JSONStructure
-        url: json-structure/track-common-food-structure.json
-      - type: JSONStructure
-        url: json-structure/track-exercise-structure.json
-      - type: JSONStructure
-        url: json-structure/track-food-structure.json
-      - type: JSONStructure
-        url: json-structure/track-foods-response-structure.json
-      - type: JSONStructure
-        url: json-structure/track-full-nutrient-structure.json
-      - type: JSONStructure
-        url: json-structure/track-instant-search-response-structure.json
-      - type: JSONStructure
-        url: json-structure/track-natural-exercise-request-structure.json
-      - type: JSONStructure
-        url: json-structure/track-natural-exercise-response-structure.json
-      - type: JSONStructure
-        url: json-structure/track-natural-nutrients-request-structure.json
-      - type: JSONStructure
-        url: json-structure/track-natural-nutrients-response-structure.json
-      - type: JSONStructure
-        url: json-structure/track-photo-structure.json
-      - type: Examples
-        url: examples/track-alt-measure-example.json
-      - type: Examples
-        url: examples/track-brand-example.json
-      - type: Examples
-        url: examples/track-brand-search-response-example.json
-      - type: Examples
-        url: examples/track-branded-food-example.json
-      - type: Examples
-        url: examples/track-common-food-example.json
-      - type: Examples
-        url: examples/track-exercise-example.json
-      - type: Examples
-        url: examples/track-food-example.json
-      - type: Examples
-        url: examples/track-foods-response-example.json
-      - type: Examples
-        url: examples/track-full-nutrient-example.json
-      - type: Examples
-        url: examples/track-instant-search-response-example.json
-      - type: Examples
-        url: examples/track-natural-exercise-request-example.json
-      - type: Examples
-        url: examples/track-natural-exercise-response-example.json
-      - type: Examples
-        url: examples/track-natural-nutrients-request-example.json
-      - type: Examples
-        url: examples/track-natural-nutrients-response-example.json
-      - type: Examples
-        url: examples/track-photo-example.json
+- aid: nutritionix:nutritionix-brands-api
+  name: Nutritionix Brands API
+  description: Search the database of food and restaurant brands.
+  humanURL: https://developer.nutritionix.com/docs/v2
+  baseURL: https://trackapi.nutritionix.com/v2
+  tags:
+  - Brands
+  properties:
+  - type: OpenAPI
+    url: openapi/nutritionix-brands-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nutritionix.com/docs/v2
+  - type: APIReference
+    url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
+  - type: Authentication
+    url: https://docx.syndigo.com/developers/docs/authentication
+  - type: SDKs
+    url: https://github.com/nutritionix/nodejs-client-library
+  - type: SDKs
+    url: https://github.com/nutritionix/library-python
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-php
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-ror
+  - type: SDKs
+    url: https://github.com/nutritionix/track-api-angular-client
+  - type: JSONSchema
+    url: json-schema/track-alt-measure-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-branded-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-common-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-exercise-schema.json
+  - type: JSONSchema
+    url: json-schema/track-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-foods-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-full-nutrient-schema.json
+  - type: JSONSchema
+    url: json-schema/track-instant-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-photo-schema.json
+  - type: JSONStructure
+    url: json-structure/track-alt-measure-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-structure.json
+  - type: JSONStructure
+    url: json-structure/track-branded-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-common-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-exercise-structure.json
+  - type: JSONStructure
+    url: json-structure/track-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-foods-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-full-nutrient-structure.json
+  - type: JSONStructure
+    url: json-structure/track-instant-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-photo-structure.json
+  - type: Examples
+    url: examples/track-alt-measure-example.json
+  - type: Examples
+    url: examples/track-brand-example.json
+  - type: Examples
+    url: examples/track-brand-search-response-example.json
+  - type: Examples
+    url: examples/track-branded-food-example.json
+  - type: Examples
+    url: examples/track-common-food-example.json
+  - type: Examples
+    url: examples/track-exercise-example.json
+  - type: Examples
+    url: examples/track-food-example.json
+  - type: Examples
+    url: examples/track-foods-response-example.json
+  - type: Examples
+    url: examples/track-full-nutrient-example.json
+  - type: Examples
+    url: examples/track-instant-search-response-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-request-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-response-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-request-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-response-example.json
+  - type: Examples
+    url: examples/track-photo-example.json
+- aid: nutritionix:nutritionix-item-api
+  name: Nutritionix Item API
+  description: Look up detailed nutrition for branded and restaurant menu items.
+  humanURL: https://developer.nutritionix.com/docs/v2
+  baseURL: https://trackapi.nutritionix.com/v2
+  tags:
+  - Item
+  properties:
+  - type: OpenAPI
+    url: openapi/nutritionix-item-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nutritionix.com/docs/v2
+  - type: APIReference
+    url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
+  - type: Authentication
+    url: https://docx.syndigo.com/developers/docs/authentication
+  - type: SDKs
+    url: https://github.com/nutritionix/nodejs-client-library
+  - type: SDKs
+    url: https://github.com/nutritionix/library-python
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-php
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-ror
+  - type: SDKs
+    url: https://github.com/nutritionix/track-api-angular-client
+  - type: JSONSchema
+    url: json-schema/track-alt-measure-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-branded-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-common-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-exercise-schema.json
+  - type: JSONSchema
+    url: json-schema/track-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-foods-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-full-nutrient-schema.json
+  - type: JSONSchema
+    url: json-schema/track-instant-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-photo-schema.json
+  - type: JSONStructure
+    url: json-structure/track-alt-measure-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-structure.json
+  - type: JSONStructure
+    url: json-structure/track-branded-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-common-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-exercise-structure.json
+  - type: JSONStructure
+    url: json-structure/track-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-foods-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-full-nutrient-structure.json
+  - type: JSONStructure
+    url: json-structure/track-instant-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-photo-structure.json
+  - type: Examples
+    url: examples/track-alt-measure-example.json
+  - type: Examples
+    url: examples/track-brand-example.json
+  - type: Examples
+    url: examples/track-brand-search-response-example.json
+  - type: Examples
+    url: examples/track-branded-food-example.json
+  - type: Examples
+    url: examples/track-common-food-example.json
+  - type: Examples
+    url: examples/track-exercise-example.json
+  - type: Examples
+    url: examples/track-food-example.json
+  - type: Examples
+    url: examples/track-foods-response-example.json
+  - type: Examples
+    url: examples/track-full-nutrient-example.json
+  - type: Examples
+    url: examples/track-instant-search-response-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-request-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-response-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-request-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-response-example.json
+  - type: Examples
+    url: examples/track-photo-example.json
+- aid: nutritionix:nutritionix-natural-language-api
+  name: Nutritionix Natural Language API
+  description: Translate plain-text food and exercise phrases into structured nutrition data.
+  humanURL: https://developer.nutritionix.com/docs/v2
+  baseURL: https://trackapi.nutritionix.com/v2
+  tags:
+  - Natural Language
+  properties:
+  - type: OpenAPI
+    url: openapi/nutritionix-natural-language-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nutritionix.com/docs/v2
+  - type: APIReference
+    url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
+  - type: Authentication
+    url: https://docx.syndigo.com/developers/docs/authentication
+  - type: SDKs
+    url: https://github.com/nutritionix/nodejs-client-library
+  - type: SDKs
+    url: https://github.com/nutritionix/library-python
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-php
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-ror
+  - type: SDKs
+    url: https://github.com/nutritionix/track-api-angular-client
+  - type: JSONSchema
+    url: json-schema/track-alt-measure-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-branded-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-common-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-exercise-schema.json
+  - type: JSONSchema
+    url: json-schema/track-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-foods-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-full-nutrient-schema.json
+  - type: JSONSchema
+    url: json-schema/track-instant-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-photo-schema.json
+  - type: JSONStructure
+    url: json-structure/track-alt-measure-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-structure.json
+  - type: JSONStructure
+    url: json-structure/track-branded-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-common-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-exercise-structure.json
+  - type: JSONStructure
+    url: json-structure/track-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-foods-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-full-nutrient-structure.json
+  - type: JSONStructure
+    url: json-structure/track-instant-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-photo-structure.json
+  - type: Examples
+    url: examples/track-alt-measure-example.json
+  - type: Examples
+    url: examples/track-brand-example.json
+  - type: Examples
+    url: examples/track-brand-search-response-example.json
+  - type: Examples
+    url: examples/track-branded-food-example.json
+  - type: Examples
+    url: examples/track-common-food-example.json
+  - type: Examples
+    url: examples/track-exercise-example.json
+  - type: Examples
+    url: examples/track-food-example.json
+  - type: Examples
+    url: examples/track-foods-response-example.json
+  - type: Examples
+    url: examples/track-full-nutrient-example.json
+  - type: Examples
+    url: examples/track-instant-search-response-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-request-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-response-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-request-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-response-example.json
+  - type: Examples
+    url: examples/track-photo-example.json
+- aid: nutritionix:nutritionix-search-api
+  name: Nutritionix Search API
+  description: Search the nutrition database for common and branded foods.
+  humanURL: https://developer.nutritionix.com/docs/v2
+  baseURL: https://trackapi.nutritionix.com/v2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/nutritionix-search-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nutritionix.com/docs/v2
+  - type: APIReference
+    url: https://docx.syndigo.com/developers/docs/nutritionix-api-guide
+  - type: Authentication
+    url: https://docx.syndigo.com/developers/docs/authentication
+  - type: SDKs
+    url: https://github.com/nutritionix/nodejs-client-library
+  - type: SDKs
+    url: https://github.com/nutritionix/library-python
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-php
+  - type: SDKs
+    url: https://github.com/nutritionix/api-library-ror
+  - type: SDKs
+    url: https://github.com/nutritionix/track-api-angular-client
+  - type: JSONSchema
+    url: json-schema/track-alt-measure-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-schema.json
+  - type: JSONSchema
+    url: json-schema/track-brand-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-branded-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-common-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-exercise-schema.json
+  - type: JSONSchema
+    url: json-schema/track-food-schema.json
+  - type: JSONSchema
+    url: json-schema/track-foods-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-full-nutrient-schema.json
+  - type: JSONSchema
+    url: json-schema/track-instant-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-exercise-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-request-schema.json
+  - type: JSONSchema
+    url: json-schema/track-natural-nutrients-response-schema.json
+  - type: JSONSchema
+    url: json-schema/track-photo-schema.json
+  - type: JSONStructure
+    url: json-structure/track-alt-measure-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-brand-structure.json
+  - type: JSONStructure
+    url: json-structure/track-branded-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-common-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-exercise-structure.json
+  - type: JSONStructure
+    url: json-structure/track-food-structure.json
+  - type: JSONStructure
+    url: json-structure/track-foods-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-full-nutrient-structure.json
+  - type: JSONStructure
+    url: json-structure/track-instant-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-exercise-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-request-structure.json
+  - type: JSONStructure
+    url: json-structure/track-natural-nutrients-response-structure.json
+  - type: JSONStructure
+    url: json-structure/track-photo-structure.json
+  - type: Examples
+    url: examples/track-alt-measure-example.json
+  - type: Examples
+    url: examples/track-brand-example.json
+  - type: Examples
+    url: examples/track-brand-search-response-example.json
+  - type: Examples
+    url: examples/track-branded-food-example.json
+  - type: Examples
+    url: examples/track-common-food-example.json
+  - type: Examples
+    url: examples/track-exercise-example.json
+  - type: Examples
+    url: examples/track-food-example.json
+  - type: Examples
+    url: examples/track-foods-response-example.json
+  - type: Examples
+    url: examples/track-full-nutrient-example.json
+  - type: Examples
+    url: examples/track-instant-search-response-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-request-example.json
+  - type: Examples
+    url: examples/track-natural-exercise-response-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-request-example.json
+  - type: Examples
+    url: examples/track-natural-nutrients-response-example.json
+  - type: Examples
+    url: examples/track-photo-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/nutritionix-agentic-access.yml
