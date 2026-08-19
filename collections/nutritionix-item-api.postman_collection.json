@@ -1,0 +1,515 @@
+{
+  "item": [
+    {
+      "id": "bb105d4c-aa90-47cd-81e4-a6422a035aca",
+      "name": "Item",
+      "description": {
+        "content": "Look up detailed nutrition for branded and restaurant menu items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f77e7a1d-cc42-471f-b5b4-d3b3ba21805a",
+          "name": "Nutritionix Search Item",
+          "request": {
+            "name": "Nutritionix Search Item",
+            "description": {
+              "content": "Retrieve full nutrition detail for a branded or restaurant menu item by its Nutritionix item identifier or UPC barcode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "item"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nix_item_id",
+                  "value": "<string>",
+                  "description": "The Nutritionix item identifier for a branded or restaurant item."
+                },
+                {
+                  "disabled": false,
+                  "key": "upc",
+                  "value": "<string>",
+                  "description": "The UPC barcode of a branded grocery item."
+                },
+                {
+                  "disabled": false,
+                  "key": "claims",
+                  "value": "false",
+                  "description": "Whether to include marketing/regulatory claims in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "allergens",
+                  "value": "false",
+                  "description": "Whether to include allergen information in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ee331f7-5680-4fda-bcf7-12b9f1448894",
+              "name": "Branded item nutrition detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nix_item_id",
+                      "value": "513fc9e73fe3ffd40300109f"
+                    },
+                    {
+                      "key": "upc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "claims",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allergens",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"foods\": [\n    {\n      \"food_name\": \"Big Mac\",\n      \"brand_name\": \"McDonald's\",\n      \"serving_qty\": 1,\n      \"serving_unit\": \"burger\",\n      \"serving_weight_grams\": 219,\n      \"nf_calories\": 540,\n      \"nf_total_fat\": 28,\n      \"nf_saturated_fat\": 10,\n      \"nf_cholesterol\": 80,\n      \"nf_sodium\": 970,\n      \"nf_total_carbohydrate\": 47,\n      \"nf_dietary_fiber\": 3,\n      \"nf_sugars\": 9,\n      \"nf_protein\": 25,\n      \"nf_potassium\": 1,\n      \"nf_p\": 1,\n      \"full_nutrients\": [\n        {\n          \"attr_id\": 203,\n          \"value\": 25\n        }\n      ],\n      \"nix_brand_name\": \"McDonald's\",\n      \"nix_brand_id\": \"513fbc1283aa2dc80c000053\",\n      \"nix_item_name\": \"Big Mac\",\n      \"nix_item_id\": \"513fc9e73fe3ffd40300109f\",\n      \"metadata\": {},\n      \"source\": 8,\n      \"ndb_no\": 1,\n      \"tags\": {},\n      \"alt_measures\": [\n        {\n          \"serving_weight\": 219,\n          \"measure\": \"burger\",\n          \"seq\": 1,\n          \"qty\": 1\n        }\n      ],\n      \"photo\": {\n        \"thumb\": \"https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg\",\n        \"highres\": \"highres\",\n        \"is_user_uploaded\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f0d8ffe-17c3-4a26-ac02-3eb37f2152f8",
+              "name": "Missing or invalid x-app-id / x-app-key credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nix_item_id",
+                      "value": "513fc9e73fe3ffd40300109f"
+                    },
+                    {
+                      "key": "upc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "claims",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allergens",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f5f3f4d-6b14-4635-8956-d278a74e68cc",
+              "name": "The requested resource could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nix_item_id",
+                      "value": "513fc9e73fe3ffd40300109f"
+                    },
+                    {
+                      "key": "upc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "claims",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allergens",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0166a8c6-fb2e-457c-8ee1-d95a7bc4116a",
+          "name": "Nutritionix Get Item",
+          "request": {
+            "name": "Nutritionix Get Item",
+            "description": {
+              "content": "Retrieve a single item by its item identifier, resource identifier, or UPC. This is the legacy item-lookup endpoint; new integrations should prefer /search/item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "item"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "The item identifier or resource identifier to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "upc",
+                  "value": "<string>",
+                  "description": "The UPC barcode of a branded grocery item."
+                },
+                {
+                  "disabled": false,
+                  "key": "nix_item_id",
+                  "value": "<string>",
+                  "description": "The Nutritionix item identifier."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2de2eb2-ead1-4d65-82a4-f50360890c96",
+              "name": "Item nutrition detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "upc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nix_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"foods\": [\n    {\n      \"food_name\": \"Big Mac\",\n      \"brand_name\": \"McDonald's\",\n      \"serving_qty\": 1,\n      \"serving_unit\": \"burger\",\n      \"serving_weight_grams\": 219,\n      \"nf_calories\": 540,\n      \"nf_total_fat\": 28,\n      \"nf_saturated_fat\": 10,\n      \"nf_cholesterol\": 80,\n      \"nf_sodium\": 970,\n      \"nf_total_carbohydrate\": 47,\n      \"nf_dietary_fiber\": 3,\n      \"nf_sugars\": 9,\n      \"nf_protein\": 25,\n      \"nf_potassium\": 1,\n      \"nf_p\": 1,\n      \"full_nutrients\": [\n        {\n          \"attr_id\": 203,\n          \"value\": 25\n        }\n      ],\n      \"nix_brand_name\": \"McDonald's\",\n      \"nix_brand_id\": \"513fbc1283aa2dc80c000053\",\n      \"nix_item_name\": \"Big Mac\",\n      \"nix_item_id\": \"513fc9e73fe3ffd40300109f\",\n      \"metadata\": {},\n      \"source\": 8,\n      \"ndb_no\": 1,\n      \"tags\": {},\n      \"alt_measures\": [\n        {\n          \"serving_weight\": 219,\n          \"measure\": \"burger\",\n          \"seq\": 1,\n          \"qty\": 1\n        }\n      ],\n      \"photo\": {\n        \"thumb\": \"https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg\",\n        \"highres\": \"highres\",\n        \"is_user_uploaded\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75cd5022-66d8-46d8-888d-3a22e2695f6d",
+              "name": "Missing or invalid x-app-id / x-app-key credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "upc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nix_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e6c1f95-cca9-4aed-a695-f90a296e55a2",
+              "name": "The requested resource could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "upc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nix_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trackapi.nutritionix.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-app-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c71318cd-fb10-4551-aab1-43456448482c",
+    "name": "Nutritionix Track API v2 Brands Item API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.\n\nContact Support:\n Name: Nutritionix Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

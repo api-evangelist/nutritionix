@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nutritionix Track API v2 Brands Item API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-app-id",
+      "value": "{{x-app-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Item",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Search Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/search/item",
+            "params": [
+              {
+                "name": "nix_item_id",
+                "value": "513fc9e73fe3ffd40300109f",
+                "type": "query",
+                "description": "The Nutritionix item identifier for a branded or restaurant item."
+              },
+              {
+                "name": "upc",
+                "value": "",
+                "type": "query",
+                "description": "The UPC barcode of a branded grocery item."
+              },
+              {
+                "name": "claims",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include marketing/regulatory claims in the response."
+              },
+              {
+                "name": "allergens",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include allergen information in the response."
+              }
+            ]
+          },
+          "docs": "Retrieve full nutrition detail for a branded or restaurant menu item by its Nutritionix item identifier or UPC barcode."
+        },
+        {
+          "info": {
+            "name": "Nutritionix Get Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/item",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The item identifier or resource identifier to look up."
+              },
+              {
+                "name": "upc",
+                "value": "",
+                "type": "query",
+                "description": "The UPC barcode of a branded grocery item."
+              },
+              {
+                "name": "nix_item_id",
+                "value": "",
+                "type": "query",
+                "description": "The Nutritionix item identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a single item by its item identifier, resource identifier, or UPC. This is the legacy item-lookup endpoint; new integrations should prefer /search/item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

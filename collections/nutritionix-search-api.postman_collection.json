@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "725fab20-1502-4750-81cd-c446cc67a865",
+      "name": "Search",
+      "description": {
+        "content": "Search the nutrition database for common and branded foods.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f14209c-4191-4c21-84ae-ed59da7812c4",
+          "name": "Nutritionix Search Instant",
+          "request": {
+            "name": "Nutritionix Search Instant",
+            "description": {
+              "content": "Typeahead search that returns matched common foods and branded foods for a partial or complete query string. Ideal for building food autocomplete experiences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "instant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The food search phrase to match against common and branded foods."
+                },
+                {
+                  "disabled": false,
+                  "key": "branded",
+                  "value": "true",
+                  "description": "Whether to include branded foods in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "common",
+                  "value": "true",
+                  "description": "Whether to include common foods in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "detailed",
+                  "value": "false",
+                  "description": "Whether to return full nutrient detail for each result."
+                },
+                {
+                  "disabled": false,
+                  "key": "branded_type",
+                  "value": "<integer>",
+                  "description": "Filter branded results by type (1 for restaurant, 2 for grocery/CPG)."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "en_US",
+                  "description": "Locale code used to localize results (e.g. en_US)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0d3770e-7a1a-4b6d-b44b-f70318c8197d",
+              "name": "Matching common and branded foods.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "instant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "cheese"
+                    },
+                    {
+                      "key": "branded",
+                      "value": "true"
+                    },
+                    {
+                      "key": "common",
+                      "value": "true"
+                    },
+                    {
+                      "key": "detailed",
+                      "value": "false"
+                    },
+                    {
+                      "key": "branded_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "en_US"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"common\": [\n    {\n      \"food_name\": \"cheese\",\n      \"serving_unit\": \"cup, diced\",\n      \"tag_name\": \"cheese\",\n      \"serving_qty\": 1,\n      \"common_type\": 1,\n      \"tag_id\": \"402\",\n      \"photo\": {\n        \"thumb\": \"https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg\",\n        \"highres\": \"highres\",\n        \"is_user_uploaded\": false\n      },\n      \"locale\": \"en_US\"\n    }\n  ],\n  \"branded\": [\n    {\n      \"food_name\": \"Big Mac\",\n      \"serving_unit\": \"burger\",\n      \"nix_brand_id\": \"513fbc1283aa2dc80c000053\",\n      \"brand_name_item_name\": \"McDonald's Big Mac\",\n      \"serving_qty\": 1,\n      \"nf_calories\": 540,\n      \"photo\": {\n        \"thumb\": \"https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg\",\n        \"highres\": \"highres\",\n        \"is_user_uploaded\": false\n      },\n      \"brand_name\": \"McDonald's\",\n      \"region\": 1,\n      \"brand_type\": 1,\n      \"nix_item_id\": \"513fc9e73fe3ffd40300109f\",\n      \"locale\": \"en_US\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5750a5a0-9de0-46c1-9de8-e21bff6db4d7",
+              "name": "Missing or invalid x-app-id / x-app-key credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "instant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "cheese"
+                    },
+                    {
+                      "key": "branded",
+                      "value": "true"
+                    },
+                    {
+                      "key": "common",
+                      "value": "true"
+                    },
+                    {
+                      "key": "detailed",
+                      "value": "false"
+                    },
+                    {
+                      "key": "branded_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "en_US"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-app-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trackapi.nutritionix.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-app-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d781bcf-718d-4dd8-b463-295c509fc762",
+    "name": "Nutritionix Track API v2 Brands Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.\n\nContact Support:\n Name: Nutritionix Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

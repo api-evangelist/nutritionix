@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nutritionix Track API v2 Brands API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-app-id",
+      "value": "{{x-app-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Brands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Search Brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://trackapi.nutritionix.com/v2/brands/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "mcdonald",
+                "type": "query",
+                "description": "The brand name search phrase."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand type (1 for restaurant, 2 for grocery/CPG)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of brands to return."
+              }
+            ]
+          },
+          "docs": "Search the database of food and restaurant brands by name, optionally filtering by brand type (restaurant or grocery/CPG)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

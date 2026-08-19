@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nutritionix Track API v2 Brands Natural Language API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-app-id",
+      "value": "{{x-app-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Natural Language",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Nutritionix Analyze Natural Language Nutrients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://trackapi.nutritionix.com/v2/natural/nutrients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a plain-text description of one or more foods and receive a full nutrient breakdown for each detected food, including calories, macros, micronutrients, serving sizes, and photos."
+        },
+        {
+          "info": {
+            "name": "Nutritionix Analyze Natural Language Exercise",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://trackapi.nutritionix.com/v2/natural/exercise",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a plain-text description of physical activity and receive an estimate of calories burned, personalized by the user's gender, weight, height, and age."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
