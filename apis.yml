@@ -19,7 +19,7 @@ description: >-
   natural-language food and exercise descriptions into full nutrient analysis, and powers food search, branded item
   lookup, and restaurant menu data for diet, fitness, and health applications.
 url: https://developer.nutritionix.com/
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-05-28'
 modified: '2026-06-03'
 x-source: public-apis/public-apis
