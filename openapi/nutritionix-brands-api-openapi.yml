@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Nutritionix Track API v2 Brands API
   version: '2.0'
@@ -73,14 +73,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    BrandSearchResponse:
-      type: object
-      description: Response from the brand search endpoint.
-      properties:
-        brands:
-          type: array
-          items:
-            $ref: '#/components/schemas/Brand'
     Brand:
       type: object
       description: A food or restaurant brand.
@@ -92,9 +84,10 @@ components:
           type: string
           example: McDonald's
         website:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
         type:
           type: integer
           description: Brand type (1 for restaurant, 2 for grocery/CPG).
@@ -109,6 +102,14 @@ components:
         id:
           type: string
           description: Internal error identifier.
+    BrandSearchResponse:
+      type: object
+      description: Response from the brand search endpoint.
+      properties:
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
   responses:
     Unauthorized:
       description: Missing or invalid x-app-id / x-app-key credentials.
