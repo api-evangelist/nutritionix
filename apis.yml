@@ -285,7 +285,7 @@ apis:
   humanURL: https://developer.nutritionix.com/docs/v2
   baseURL: https://trackapi.nutritionix.com/v2
   tags:
-  - Natural Language
+  - Natural-Language
   tags_raw:
   - Natural Language
   properties:
