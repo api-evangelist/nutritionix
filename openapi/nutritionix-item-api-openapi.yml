@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Nutritionix Track API v2 Brands Item API
+  title: Nutritionix Track API v2 Item API
   version: '2.0'
   description: The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.
   contact:
@@ -193,60 +193,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Photo:
-      type: object
-      description: Image URLs associated with a food or exercise.
-      properties:
-        thumb:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
-        highres:
-          type:
-          - string
-          - 'null'
-          format: uri
-        is_user_uploaded:
-          type: boolean
-          default: false
-    AltMeasure:
-      type: object
-      description: An alternative serving measure for a food.
-      properties:
-        serving_weight:
-          type: number
-          example: 219
-        measure:
-          type: string
-          example: burger
-        seq:
-          type:
-          - integer
-          - 'null'
-        qty:
-          type: number
-          example: 1
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        id:
-          type: string
-          description: Internal error identifier.
-    FoodsResponse:
-      type: object
-      description: A response that wraps one or more fully detailed food objects.
-      properties:
-        foods:
-          type: array
-          items:
-            $ref: '#/components/schemas/Food'
     Food:
       type: object
       description: A fully detailed food object with complete nutrient information.
@@ -360,6 +320,59 @@ components:
             $ref: '#/components/schemas/AltMeasure'
         photo:
           $ref: '#/components/schemas/Photo'
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
+    AltMeasure:
+      type: object
+      description: An alternative serving measure for a food.
+      properties:
+        serving_weight:
+          type: number
+          example: 219
+        measure:
+          type: string
+          example: burger
+        seq:
+          type:
+          - integer
+          - 'null'
+        qty:
+          type: number
+          example: 1
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type:
+          - string
+          - 'null'
+          format: uri
+        is_user_uploaded:
+          type: boolean
+          default: false
+    FoodsResponse:
+      type: object
+      description: A response that wraps one or more fully detailed food objects.
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
     FullNutrient:
       type: object
       description: A nutrient value identified by its USDA attribute id.
@@ -372,19 +385,6 @@ components:
           type: number
           description: Nutrient value for the serving.
           example: 25
-  responses:
-    Unauthorized:
-      description: Missing or invalid x-app-id / x-app-key credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource could not be found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     AppId:
       type: apiKey

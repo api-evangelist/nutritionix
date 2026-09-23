@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Nutritionix Track API v2 Brands Natural Language API
+  title: Nutritionix Track API v2 Natural Language API
   version: '2.0'
   description: The Nutritionix Track API converts natural-language food and exercise descriptions into detailed nutrient and calorie analysis, and provides search and lookup access to the world's largest verified nutrition database, including USDA-linked common foods and over a million branded and restaurant menu items.
   contact:
@@ -156,42 +156,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Photo:
-      type: object
-      description: Image URLs associated with a food or exercise.
-      properties:
-        thumb:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
-        highres:
-          type:
-          - string
-          - 'null'
-          format: uri
-        is_user_uploaded:
-          type: boolean
-          default: false
-    AltMeasure:
-      type: object
-      description: An alternative serving measure for a food.
-      properties:
-        serving_weight:
-          type: number
-          example: 219
-        measure:
-          type: string
-          example: burger
-        seq:
-          type:
-          - integer
-          - 'null'
-        qty:
-          type: number
-          example: 1
     Exercise:
       type: object
       description: A single analyzed physical activity.
@@ -238,15 +216,15 @@ components:
         id:
           type: string
           description: Internal error identifier.
-    NaturalExerciseResponse:
+    NaturalNutrientsResponse:
       type: object
-      description: Response from the natural language exercise endpoint.
+      description: Response from the natural language nutrients endpoint.
       properties:
-        exercises:
+        foods:
           type: array
-          description: One exercise object per detected activity.
+          description: One food object per detected food in the query.
           items:
-            $ref: '#/components/schemas/Exercise'
+            $ref: '#/components/schemas/Food'
     Food:
       type: object
       description: A fully detailed food object with complete nutrient information.
@@ -360,27 +338,6 @@ components:
             $ref: '#/components/schemas/AltMeasure'
         photo:
           $ref: '#/components/schemas/Photo'
-    FullNutrient:
-      type: object
-      description: A nutrient value identified by its USDA attribute id.
-      properties:
-        attr_id:
-          type: integer
-          description: USDA NUTR_DEF attribute identifier.
-          example: 203
-        value:
-          type: number
-          description: Nutrient value for the serving.
-          example: 25
-    NaturalNutrientsResponse:
-      type: object
-      description: Response from the natural language nutrients endpoint.
-      properties:
-        foods:
-          type: array
-          description: One food object per detected food in the query.
-          items:
-            $ref: '#/components/schemas/Food'
     NaturalExerciseRequest:
       type: object
       description: Request body for the natural language exercise endpoint.
@@ -453,19 +410,62 @@ components:
           type: string
           description: Locale code used to localize results.
           example: en_US
-  responses:
-    Unauthorized:
-      description: Missing or invalid x-app-id / x-app-key credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource could not be found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    FullNutrient:
+      type: object
+      description: A nutrient value identified by its USDA attribute id.
+      properties:
+        attr_id:
+          type: integer
+          description: USDA NUTR_DEF attribute identifier.
+          example: 203
+        value:
+          type: number
+          description: Nutrient value for the serving.
+          example: 25
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type:
+          - string
+          - 'null'
+          format: uri
+        is_user_uploaded:
+          type: boolean
+          default: false
+    AltMeasure:
+      type: object
+      description: An alternative serving measure for a food.
+      properties:
+        serving_weight:
+          type: number
+          example: 219
+        measure:
+          type: string
+          example: burger
+        seq:
+          type:
+          - integer
+          - 'null'
+        qty:
+          type: number
+          example: 1
+    NaturalExerciseResponse:
+      type: object
+      description: Response from the natural language exercise endpoint.
+      properties:
+        exercises:
+          type: array
+          description: One exercise object per detected activity.
+          items:
+            $ref: '#/components/schemas/Exercise'
   securitySchemes:
     AppId:
       type: apiKey
