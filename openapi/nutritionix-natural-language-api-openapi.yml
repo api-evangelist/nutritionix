@@ -157,74 +157,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid x-app-id / x-app-key credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource could not be found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Exercise:
-      type: object
-      description: A single analyzed physical activity.
-      properties:
-        tag_id:
-          type: integer
-          description: Internal exercise tag identifier.
-        user_input:
-          type: string
-          description: The portion of the query that mapped to this exercise.
-        duration_min:
-          type: number
-          description: Duration of the activity in minutes.
-          example: 30
-        met:
-          type: number
-          description: Metabolic Equivalent of Task value for the activity.
-          example: 9.8
-        nf_calories:
-          type: number
-          description: Estimated calories burned.
-          example: 372.5
-        photo:
-          $ref: '#/components/schemas/Photo'
-        compendium_code:
-          type: integer
-          description: Compendium of Physical Activities code for the exercise.
-        name:
-          type: string
-          description: Canonical name of the activity.
-          example: running
-        benefits:
-          type:
-          - string
-          - 'null'
-          description: Optional notes on the benefits of the activity.
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        id:
-          type: string
-          description: Internal error identifier.
-    NaturalNutrientsResponse:
-      type: object
-      description: Response from the natural language nutrients endpoint.
-      properties:
-        foods:
-          type: array
-          description: One food object per detected food in the query.
-          items:
-            $ref: '#/components/schemas/Food'
     Food:
       type: object
       description: A fully detailed food object with complete nutrient information.
@@ -338,34 +283,60 @@ components:
             $ref: '#/components/schemas/AltMeasure'
         photo:
           $ref: '#/components/schemas/Photo'
-    NaturalExerciseRequest:
+    Exercise:
       type: object
-      description: Request body for the natural language exercise endpoint.
-      required:
-      - query
+      description: A single analyzed physical activity.
       properties:
-        query:
-          type: string
-          description: Plain-text description of the physical activity.
-          example: ran 3 miles
-        gender:
-          type: string
-          description: User gender, used to refine calorie-burn estimates.
-          enum:
-          - male
-          - female
-        weight_kg:
-          type: number
-          description: User weight in kilograms.
-          example: 72.5
-        height_cm:
-          type: number
-          description: User height in centimeters.
-          example: 167.64
-        age:
+        tag_id:
           type: integer
-          description: User age in years.
+          description: Internal exercise tag identifier.
+        user_input:
+          type: string
+          description: The portion of the query that mapped to this exercise.
+        duration_min:
+          type: number
+          description: Duration of the activity in minutes.
           example: 30
+        met:
+          type: number
+          description: Metabolic Equivalent of Task value for the activity.
+          example: 9.8
+        nf_calories:
+          type: number
+          description: Estimated calories burned.
+          example: 372.5
+        photo:
+          $ref: '#/components/schemas/Photo'
+        compendium_code:
+          type: integer
+          description: Compendium of Physical Activities code for the exercise.
+        name:
+          type: string
+          description: Canonical name of the activity.
+          example: running
+        benefits:
+          type:
+          - string
+          - 'null'
+          description: Optional notes on the benefits of the activity.
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type:
+          - string
+          - 'null'
+          format: uri
+        is_user_uploaded:
+          type: boolean
+          default: false
     NaturalNutrientsRequest:
       type: object
       description: Request body for the natural language nutrients endpoint.
@@ -410,36 +381,6 @@ components:
           type: string
           description: Locale code used to localize results.
           example: en_US
-    FullNutrient:
-      type: object
-      description: A nutrient value identified by its USDA attribute id.
-      properties:
-        attr_id:
-          type: integer
-          description: USDA NUTR_DEF attribute identifier.
-          example: 203
-        value:
-          type: number
-          description: Nutrient value for the serving.
-          example: 25
-    Photo:
-      type: object
-      description: Image URLs associated with a food or exercise.
-      properties:
-        thumb:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
-        highres:
-          type:
-          - string
-          - 'null'
-          format: uri
-        is_user_uploaded:
-          type: boolean
-          default: false
     AltMeasure:
       type: object
       description: An alternative serving measure for a food.
@@ -457,6 +398,65 @@ components:
         qty:
           type: number
           example: 1
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
+    NaturalExerciseRequest:
+      type: object
+      description: Request body for the natural language exercise endpoint.
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: Plain-text description of the physical activity.
+          example: ran 3 miles
+        gender:
+          type: string
+          description: User gender, used to refine calorie-burn estimates.
+          enum:
+          - male
+          - female
+        weight_kg:
+          type: number
+          description: User weight in kilograms.
+          example: 72.5
+        height_cm:
+          type: number
+          description: User height in centimeters.
+          example: 167.64
+        age:
+          type: integer
+          description: User age in years.
+          example: 30
+    FullNutrient:
+      type: object
+      description: A nutrient value identified by its USDA attribute id.
+      properties:
+        attr_id:
+          type: integer
+          description: USDA NUTR_DEF attribute identifier.
+          example: 203
+        value:
+          type: number
+          description: Nutrient value for the serving.
+          example: 25
+    NaturalNutrientsResponse:
+      type: object
+      description: Response from the natural language nutrients endpoint.
+      properties:
+        foods:
+          type: array
+          description: One food object per detected food in the query.
+          items:
+            $ref: '#/components/schemas/Food'
     NaturalExerciseResponse:
       type: object
       description: Response from the natural language exercise endpoint.

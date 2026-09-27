@@ -72,25 +72,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        id:
-          type: string
-          description: Internal error identifier.
-    BrandSearchResponse:
-      type: object
-      description: Response from the brand search endpoint.
-      properties:
-        brands:
-          type: array
-          items:
-            $ref: '#/components/schemas/Brand'
     Brand:
       type: object
       description: A food or restaurant brand.
@@ -110,13 +99,24 @@ components:
           type: integer
           description: Brand type (1 for restaurant, 2 for grocery/CPG).
           example: 1
-  responses:
-    Unauthorized:
-      description: Missing or invalid x-app-id / x-app-key credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    BrandSearchResponse:
+      type: object
+      description: Response from the brand search endpoint.
+      properties:
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
   securitySchemes:
     AppId:
       type: apiKey
