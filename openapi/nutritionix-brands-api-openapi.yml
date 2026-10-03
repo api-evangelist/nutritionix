@@ -80,6 +80,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    BrandSearchResponse:
+      type: object
+      description: Response from the brand search endpoint.
+      properties:
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
     Brand:
       type: object
       description: A food or restaurant brand.
@@ -99,14 +107,6 @@ components:
           type: integer
           description: Brand type (1 for restaurant, 2 for grocery/CPG).
           example: 1
-    BrandSearchResponse:
-      type: object
-      description: Response from the brand search endpoint.
-      properties:
-        brands:
-          type: array
-          items:
-            $ref: '#/components/schemas/Brand'
     Error:
       type: object
       description: Standard error response.

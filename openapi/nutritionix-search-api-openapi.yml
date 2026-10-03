@@ -145,24 +145,6 @@ components:
         locale:
           type: string
           example: en_US
-    Photo:
-      type: object
-      description: Image URLs associated with a food or exercise.
-      properties:
-        thumb:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
-        highres:
-          type:
-          - string
-          - 'null'
-          format: uri
-        is_user_uploaded:
-          type: boolean
-          default: false
     BrandedFood:
       type: object
       description: A matched branded or restaurant food from instant search.
@@ -202,16 +184,6 @@ components:
         locale:
           type: string
           example: en_US
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        id:
-          type: string
-          description: Internal error identifier.
     InstantSearchResponse:
       type: object
       description: Response from the instant search endpoint.
@@ -226,6 +198,34 @@ components:
           description: Matched branded and restaurant foods.
           items:
             $ref: '#/components/schemas/BrandedFood'
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type:
+          - string
+          - 'null'
+          format: uri
+        is_user_uploaded:
+          type: boolean
+          default: false
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
   responses:
     Unauthorized:
       description: Missing or invalid x-app-id / x-app-key credentials.

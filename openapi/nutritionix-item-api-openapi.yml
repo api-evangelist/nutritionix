@@ -193,19 +193,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource could not be found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid x-app-id / x-app-key credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Food:
       type: object
@@ -365,6 +352,14 @@ components:
         id:
           type: string
           description: Internal error identifier.
+    FoodsResponse:
+      type: object
+      description: A response that wraps one or more fully detailed food objects.
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
     FullNutrient:
       type: object
       description: A nutrient value identified by its USDA attribute id.
@@ -377,14 +372,19 @@ components:
           type: number
           description: Nutrient value for the serving.
           example: 25
-    FoodsResponse:
-      type: object
-      description: A response that wraps one or more fully detailed food objects.
-      properties:
-        foods:
-          type: array
-          items:
-            $ref: '#/components/schemas/Food'
+  responses:
+    NotFound:
+      description: The requested resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid x-app-id / x-app-key credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     AppId:
       type: apiKey
