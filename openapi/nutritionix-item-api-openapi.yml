@@ -194,6 +194,23 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    AltMeasure:
+      type: object
+      description: An alternative serving measure for a food.
+      properties:
+        serving_weight:
+          type: number
+          example: 219
+        measure:
+          type: string
+          example: burger
+        seq:
+          type:
+          - integer
+          - 'null'
+        qty:
+          type: number
+          example: 1
     Food:
       type: object
       description: A fully detailed food object with complete nutrient information.
@@ -307,6 +324,14 @@ components:
             $ref: '#/components/schemas/AltMeasure'
         photo:
           $ref: '#/components/schemas/Photo'
+    FoodsResponse:
+      type: object
+      description: A response that wraps one or more fully detailed food objects.
+      properties:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
     Photo:
       type: object
       description: Image URLs associated with a food or exercise.
@@ -325,41 +350,6 @@ components:
         is_user_uploaded:
           type: boolean
           default: false
-    AltMeasure:
-      type: object
-      description: An alternative serving measure for a food.
-      properties:
-        serving_weight:
-          type: number
-          example: 219
-        measure:
-          type: string
-          example: burger
-        seq:
-          type:
-          - integer
-          - 'null'
-        qty:
-          type: number
-          example: 1
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        id:
-          type: string
-          description: Internal error identifier.
-    FoodsResponse:
-      type: object
-      description: A response that wraps one or more fully detailed food objects.
-      properties:
-        foods:
-          type: array
-          items:
-            $ref: '#/components/schemas/Food'
     FullNutrient:
       type: object
       description: A nutrient value identified by its USDA attribute id.
@@ -372,6 +362,16 @@ components:
           type: number
           description: Nutrient value for the serving.
           example: 25
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
   responses:
     NotFound:
       description: The requested resource could not be found.
