@@ -194,23 +194,32 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    AltMeasure:
+    FoodsResponse:
       type: object
-      description: An alternative serving measure for a food.
+      description: A response that wraps one or more fully detailed food objects.
       properties:
-        serving_weight:
-          type: number
-          example: 219
-        measure:
-          type: string
-          example: burger
-        seq:
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
+    Photo:
+      type: object
+      description: Image URLs associated with a food or exercise.
+      properties:
+        thumb:
           type:
-          - integer
+          - string
           - 'null'
-        qty:
-          type: number
-          example: 1
+          format: uri
+          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
+        highres:
+          type:
+          - string
+          - 'null'
+          format: uri
+        is_user_uploaded:
+          type: boolean
+          default: false
     Food:
       type: object
       description: A fully detailed food object with complete nutrient information.
@@ -324,32 +333,16 @@ components:
             $ref: '#/components/schemas/AltMeasure'
         photo:
           $ref: '#/components/schemas/Photo'
-    FoodsResponse:
+    Error:
       type: object
-      description: A response that wraps one or more fully detailed food objects.
+      description: Standard error response.
       properties:
-        foods:
-          type: array
-          items:
-            $ref: '#/components/schemas/Food'
-    Photo:
-      type: object
-      description: Image URLs associated with a food or exercise.
-      properties:
-        thumb:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: https://nix-tag-images.s3.amazonaws.com/402_thumb.jpg
-        highres:
-          type:
-          - string
-          - 'null'
-          format: uri
-        is_user_uploaded:
-          type: boolean
-          default: false
+        message:
+          type: string
+          description: Human-readable error message.
+        id:
+          type: string
+          description: Internal error identifier.
     FullNutrient:
       type: object
       description: A nutrient value identified by its USDA attribute id.
@@ -362,16 +355,23 @@ components:
           type: number
           description: Nutrient value for the serving.
           example: 25
-    Error:
+    AltMeasure:
       type: object
-      description: Standard error response.
+      description: An alternative serving measure for a food.
       properties:
-        message:
+        serving_weight:
+          type: number
+          example: 219
+        measure:
           type: string
-          description: Human-readable error message.
-        id:
-          type: string
-          description: Internal error identifier.
+          example: burger
+        seq:
+          type:
+          - integer
+          - 'null'
+        qty:
+          type: number
+          example: 1
   responses:
     NotFound:
       description: The requested resource could not be found.
