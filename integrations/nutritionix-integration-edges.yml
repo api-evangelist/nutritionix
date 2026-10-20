@@ -1,0 +1,33 @@
+edges:
+- partner_name: Databricks Marketplace
+  partner: databricks
+  partner_match: aggregator
+  type: marketplace
+  marketplace: databricks-marketplace
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://marketplace.databricks.com/provider/b00b0400-e15d-4f0f-9804-67c86e38aa3a
+  category: data product listing
+  contract_reference:
+    register: Databricks Marketplace (marketplace.databricks.com/api/2.0/public-marketplace-providers + public-marketplace-listings)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Nutritionix
+    matched_domain: nutritionix.com
+    matched_by: domain
+    listings: 2
+    sample_listings:
+    - Consumer Packaged Goods (Grocery) | Nutrition Datasets
+    - Restaurants | Nutrition Datasets
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+generated: '2026-10-20'
+method: searched
+source:
+- https://marketplace.databricks.com/
+checked:
+- https://marketplace.databricks.com/
